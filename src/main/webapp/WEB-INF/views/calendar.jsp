@@ -5,8 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="<c:url value="/resources/css/main.css" />" rel='stylesheet' />
-<script src='<c:url value="/resources/js/main.js" />'></script>
+<link href="<c:url value="/css/FullCalendar.css" />" rel='stylesheet' />
+<script src='<c:url value="/js/FullCalendar.js" />'></script>
+<script src='<c:url value="/js/custom.js" />'></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
@@ -15,14 +17,22 @@
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth'
+        right: ''
       },
       locale : "ko",
       defaultView: 'dayGridMonth',
-      navLinks: true, // can click day/week names to navigate views
-      businessHours: true, // display business hours
-      editable: true,
+      businessHours: true, // 휴일 표시
       selectable: true,    
+      
+      dateClick : function(info){ // 선택한 날짜 값 뽑아내기
+    	  const clickDate = info.dateStr
+    	  const strArr = clickDate.split('-');
+    	  const year = strArr[0]
+    	  const month = strArr[1]
+    	  const day = strArr[2]
+    	  /* alert(year+"년"+month+"월"+day+"일"); */
+    	  add_ClickSchedule(year,month,day)
+      },
     });
 
     calendar.render();
@@ -45,7 +55,7 @@
   .add-btn {
   	position: absolute;
   	top: 1px;
-  	right: 70px;
+  	right: 0px;
   	background: #111000;
   	border: 0;
   	color: white;
@@ -59,7 +69,8 @@
 </head>
 	<body>
 		<h2 style="text-align: center;">My Calendar</h2>
-	  <div id='calendar' style="position: relative;" />
-	  <button class="add-btn" type="button" onclick="add_schedual();">일정추가</button>
+	  <div id='calendar' style="position: relative;" >
+	  	<button class="add-btn" type="button" onclick="add_btnSchedule();">일정추가</button>
+	  </div>
 	</body>
 </html>
