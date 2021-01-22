@@ -1,31 +1,13 @@
 package com.kyumin.calendar.domain;
 
+
 public class CalendarDTO {
-	private String year;
-	private String month;
-	private String day;
-	
-	public String getYear() {
-		return year;
+	private String startDate;
+
+	public String getStartDate() {
+		return startDate;
 	}
-	public void setYear(String year) {
-		this.year = year;
-	}
-	public String getMonth() {
-		return month;
-	}
-	public void setMonth(String month) {
-		this.month = month;
-	}
-	public String getDay() {
-		return day;
-	}
-	public void setDay(String day) {
-		this.day = day;
-	}
-	
-	@Override
-	public String toString() {
-		return "CalendarDTO [year=" + year + ", month=" + month + ", day=" + day + "]";
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 }
