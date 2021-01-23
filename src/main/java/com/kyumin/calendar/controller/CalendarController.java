@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,7 +25,7 @@ public class CalendarController {
 	}
 
 	// 클릭된 날짜에 대한 일정 추가
-	@RequestMapping(value="/calendarSelected")
+	@RequestMapping(value="/calendarSelected", method=RequestMethod.GET)
 	public String calendarSelected( @RequestParam("date") @DateTimeFormat(pattern="yyyy-MM-dd") Date date, Model model) {
 		CalendarDTO dto = new CalendarDTO();
 		SimpleDateFormat change = new SimpleDateFormat("yyyy-MM-dd");
@@ -35,16 +37,17 @@ public class CalendarController {
 	}
 	
 	// 버튼에 대한 일정 추가
-	@RequestMapping(value="/btnSelected")
+	@RequestMapping(value="/btnSelected", method=RequestMethod.GET)
 	public String btnSelected() {
 		return "addCalendar";
 	}
+	
+	@RequestMapping(value="/addCalendar", method=RequestMethod.POST)
 	@ResponseBody
-	@PostMapping("/add")
-	public String add(  @RequestParam("title") String title,
-						@RequestParam("start") String start,
-						@RequestParam("end") String end,
-						@RequestParam("content") String content) {
-		return title + start + end + content;		
+	void add(@RequestBody CalendarDTO dto) {
+		System.out.println("제목 : " + dto.getTitle());
+		System.out.println("시작 : " + dto.getStartDate());
+		System.out.println("종료 : " + dto.getEndDate());
+		System.out.println("내용 : " + dto.getContent());
 	}
 }
