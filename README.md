@@ -4,6 +4,7 @@
 	+ FullCalendar - API
 	+ Google - 공휴일 API
 	+ Spring MVC Model
+	+ Ajax 비동기 통신
 
 구현 할 기능
 ```

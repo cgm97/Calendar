@@ -1,6 +1,5 @@
 package com.kyumin.calendar.domain;
 
-
 public class CalendarDTO {
 	private String startDate;
 	private String title;

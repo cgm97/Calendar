@@ -4,19 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>일정 추가</title>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-  
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<script src='<c:url value="/js/Custom.js" />'></script>
-<script src='<c:url value="/js/jquery.serializeObject.js" />'></script>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<script src='<c:url value="/js/Custom_Calendar.js" />'></script>
+	<script src='<c:url value="/js/AjaxSerializeObject.js" />'></script>
+		<title>일정 추가</title>
 </head>
-
 <body>
 	 <div>
 	 	<h1>일정 추가</h1>
@@ -45,7 +41,6 @@
 	 		<br>
 	 	</form>
 	 		<input type= "button" value="저장" onclick="send_save()"/>
-	 		응답<textarea id="rtn">디버그정보</textarea>
 	 </div>
 </body>
 </html>

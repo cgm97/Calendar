@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link href="<c:url value="/css/FullCalendar.css" />" rel='stylesheet' />
 <script src='<c:url value="/js/FullCalendar.js" />'></script>
-<script src='<c:url value="/js/Custom.js" />'></script>
+<script src='<c:url value="/js/Custom_Calendar.js" />'></script>
 <script src='<c:url value="/js/gcal.js" />'></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {

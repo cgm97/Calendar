@@ -33,21 +33,6 @@ $(function(){ // datepicker 선언
     $("#endDate").datepicker();
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function send_save(){ // ajax 비동기 처리 - 일정 추가
 		var data = JSON.stringify($('#calendarData').serializeObject());
 		
@@ -58,12 +43,9 @@ function send_save(){ // ajax 비동기 처리 - 일정 추가
 			dataType : "json",
 			contentType : "application/json; charset=UTF-8",
 			success:function(data){
-				document.getElementById("rtn").innerHTML = data.trim();
-				/*opener.parent.location.reload();
-				window.close();*/
+				opener.parent.location.reload();
+				alert("추가 성공");
+				window.close();
 			},
-			error:function(xhr,status,error){
-				document.getElementById("rtn").innerHTML = "["+xhr.status+"]"+error;
-			}
 		});
 	};
