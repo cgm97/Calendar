@@ -7,10 +7,10 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
-	<bean id="calendarDTO" class="com.kyumin.calendar.domain.CalendarDTO" />
+<!-- 	<bean id="calendarDTO" class="com.kyumin.calendar.domain.CalendarDTO" />
 	
 	<bean id="calendarService" class="com.kyumin.calendar.service.CalendarServiceImpl" scope="singleton" >
 		<property name="calendarDTO" ref="calendarDTO" />
 	</bean>
-	
+	 -->
 </beans>

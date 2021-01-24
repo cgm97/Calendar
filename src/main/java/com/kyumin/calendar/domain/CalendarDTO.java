@@ -1,5 +1,8 @@
 package com.kyumin.calendar.domain;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CalendarDTO {
 	private String startDate;
 	private String title;

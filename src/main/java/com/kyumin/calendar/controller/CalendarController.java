@@ -1,6 +1,5 @@
 package com.kyumin.calendar.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,19 +17,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kyumin.calendar.domain.CalendarDTO;
 import com.kyumin.calendar.service.CalendarService;
-import com.kyumin.calendar.service.CalendarServiceImpl;
 
 @Controller
 public class CalendarController {
 	
 	private Map<Object,Object> map = new HashMap<Object,Object>();
-	private final CalendarService calendarService;
 	
 	@Autowired
-	public CalendarController(CalendarService calendarService) {
-		this.calendarService = calendarService;
-	}
-
+	private CalendarService calendarService;
+	
 	@GetMapping("/")
 	public String Calendar() {
 		return "calendar";
