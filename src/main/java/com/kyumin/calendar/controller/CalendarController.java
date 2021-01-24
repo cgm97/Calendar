@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,15 +17,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kyumin.calendar.domain.CalendarDTO;
+import com.kyumin.calendar.service.CalendarService;
+import com.kyumin.calendar.service.CalendarServiceImpl;
 
 @Controller
 public class CalendarController {
 	
-//	@Autowired
-//	private CalendarDTO dto;
 	private Map<Object,Object> map = new HashMap<Object,Object>();
-	private CalendarDTO dto = new CalendarDTO();
+	private final CalendarService calendarService;
 	
+	@Autowired
+	public CalendarController(CalendarService calendarService) {
+		this.calendarService = calendarService;
+	}
+
 	@GetMapping("/")
 	public String Calendar() {
 		return "calendar";
@@ -33,11 +39,8 @@ public class CalendarController {
 	// 클릭된 날짜에 대한 일정 추가 팝업
 	@RequestMapping(value="/calendarSelected", method=RequestMethod.GET)
 	public String calendarSelected( @RequestParam("date") @DateTimeFormat(pattern="yyyy-MM-dd") Date selectedDate, Model model) {
-		SimpleDateFormat change = new SimpleDateFormat("yyyy-MM-dd");
-		String startDate = change.format(selectedDate);
-		
-		dto.setStartDate(startDate);
-		model.addAttribute("selectedCalendar",dto);
+		calendarService.clickDate(selectedDate, model);
+
 		return "addCalendar";
 	}
 	
