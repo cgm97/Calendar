@@ -5,12 +5,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,7 +30,7 @@ public class CalendarController {
 		return "calendar";
 	}
 
-	// 클릭된 날짜에 대한 일정 추가
+	// 클릭된 날짜에 대한 일정 추가 팝업
 	@RequestMapping(value="/calendarSelected", method=RequestMethod.GET)
 	public String calendarSelected( @RequestParam("date") @DateTimeFormat(pattern="yyyy-MM-dd") Date selectedDate, Model model) {
 		SimpleDateFormat change = new SimpleDateFormat("yyyy-MM-dd");
@@ -43,7 +41,7 @@ public class CalendarController {
 		return "addCalendar";
 	}
 	
-	// 버튼에 대한 일정 추가
+	// 버튼에 대한 일정 추가 팝업
 	@RequestMapping(value="/btnSelected", method=RequestMethod.GET)
 	public String btnSelected() {
 		return "addCalendar";

@@ -46,6 +46,10 @@
     	  {
     		  title : 'event',
     		  start : '2021-01-22'
+    	  },
+    	  {
+    		  title : 'event2',
+    		  start : '2021-01-23'
     	  }
       ]
     });
