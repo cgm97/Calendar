@@ -1,10 +1,8 @@
 package com.kyumin.calendar.calendarTest;
 
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import com.kyumin.calendar.domain.CalendarDTO;
 
 public class TojsFromJSP_DTO_Test {
 	

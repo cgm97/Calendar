@@ -34,10 +34,17 @@ $(function(){ // datepicker 선언
 });
 
 function send_save(){ // ajax 비동기 처리 - 일정 추가
-		var data = JSON.stringify($('#calendarData').serializeObject());
+	
+		var data = JSON.stringify($('#calendarData').serializeObject()); //form 자체의 내용을 전달
+		
+		/*var data = {}; // input에 입력된 내용을 전달 - 하지만 내가 원하는건 클릭한 날짜를 전달해야하지만, null 이 전달됨
+		data["title"] = $("#title").val();
+		data["startDate"] = $("#starDate").val(); // Null 이 입력됨..
+		data["endDate"] = $("#endDate").val();
+		data["content"] = $("#content").val();*/
 		
 		$.ajax({
-			data : data,
+			data : data,	//JSON.stringify(data)
 			url : "/calendar/addCalendar",
 			type : "POST",
 			dataType : "json",
