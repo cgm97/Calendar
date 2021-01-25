@@ -1,7 +1,9 @@
 package com.kyumin.calendar.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +23,15 @@ import com.kyumin.calendar.service.CalendarService;
 @Controller
 public class CalendarController {
 	
-	private Map<Object,Object> map = new HashMap<Object,Object>();
-	
 	@Autowired
 	private CalendarService calendarService;
+	private Map<Object,Object> map = new HashMap<Object,Object>();
 	
 	@GetMapping("/")
-	public String Calendar() {
+	public String Calendar(Model model) {
+		// 추가된 일정 가져오기
+		model.addAttribute("showList",calendarService.showCalendar());
+		
 		return "calendar";
 	}
 
@@ -49,10 +53,8 @@ public class CalendarController {
 	@RequestMapping(value="/addCalendar", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<Object,Object> add(@RequestBody CalendarDTO dto) {
-		System.out.println("제목 : " + dto.getTitle());
-		System.out.println("시작 : " + dto.getStartDate());
-		System.out.println("종료 : " + dto.getEndDate());
-		System.out.println("내용 : " + dto.getContent());
+		calendarService.writeCalendar(dto);
+
 		return map;
 	}
 }

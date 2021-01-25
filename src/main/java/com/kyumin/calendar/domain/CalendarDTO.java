@@ -33,4 +33,10 @@ public class CalendarDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	@Override
+	public String toString() {
+		return "CalendarDTO [startDate=" + startDate + ", title=" + title + ", endDate=" + endDate + ", content="
+				+ content + "]";
+	}
+	
 }

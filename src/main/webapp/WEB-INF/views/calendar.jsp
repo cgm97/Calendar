@@ -43,10 +43,12 @@
           }]
       // 달력 일정 목록 
       ,events: [
+    	  <c:forEach var="showList" items="${showList}">
     	  {
-    		  title : 'event',
-    		  start : '2021-01-22'
+    		  title : '${showList.getTitle()}',
+    		  start : '${showList.getStartDate()}'
     	  },
+    	  </c:forEach>
     	  {
     		  title : 'event2',
     		  start : '2021-01-23'
