@@ -44,7 +44,7 @@ public class CalendarServiceImpl implements CalendarService {
 		List<CalendarDTO> list = new ArrayList<CalendarDTO>();
 		calendarDTO.setTitle("aaa");
 		calendarDTO.setStartDate("2021-01-25");
-		list.add(calendarDTO);
+		list.add(calendarDTO); // -> dao 로 이동 해야함
 		
 		return list;
 	}
