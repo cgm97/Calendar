@@ -9,7 +9,7 @@ import com.kyumin.calendar.service.CalendarServiceImpl;
 public class BeanTest {
 	
 	@Test
-	void BenaTest1() {
+	public void BenaTest1() {
 		ApplicationContext ac = new AnnotationConfigApplicationContext();
 		CalendarServiceImpl calendarServiceImpl = ac.getBean("calendarServiceImpl",CalendarServiceImpl.class);
 		System.out.println(calendarServiceImpl);

@@ -1,10 +1,6 @@
 package com.kyumin.calendar.repository;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 
 import com.kyumin.calendar.domain.CalendarDTO;
 
