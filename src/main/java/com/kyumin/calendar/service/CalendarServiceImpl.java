@@ -1,7 +1,6 @@
 package com.kyumin.calendar.service;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -40,12 +39,13 @@ public class CalendarServiceImpl implements CalendarService {
 	}
 
 	@Override
-	public List<CalendarDTO> showCalendar() {
-		List<CalendarDTO> list = new ArrayList<CalendarDTO>();
-		calendarDTO.setTitle("aaa");
-		calendarDTO.setStartDate("2021-01-25");
-		list.add(calendarDTO); // -> dao 로 이동 해야함
-		
-		return list;
+	public List<CalendarDTO> showCalendar() throws Exception {
+		/*
+		 * List<CalendarDTO> list = new ArrayList<CalendarDTO>();
+		 * calendarDTO.setTitle("aaa"); calendarDTO.setStartDate("2021-01-25");
+		 * list.add(calendarDTO); // -> dao 로 이동 해야함
+		 */
+	
+		return dao.getCalendar();
 	}
 }

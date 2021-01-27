@@ -10,5 +10,5 @@ import com.kyumin.calendar.domain.CalendarDTO;
 public interface CalendarService {
 	void clickDate(Date selectedDate, Model model);
 	void writeCalendar(CalendarDTO dto);
-	List<CalendarDTO> showCalendar();
+	List<CalendarDTO> showCalendar() throws Exception;
 }

@@ -43,7 +43,7 @@
           }]
       // 달력 일정 목록 
       ,events: [
-    	  <c:forEach var="showList" items="${showList}">
+    	  <c:forEach var="showList" items="${getList}">
     	  {
     		  title : '${showList.getTitle()}',
     		  start : '${showList.getStartDate()}'

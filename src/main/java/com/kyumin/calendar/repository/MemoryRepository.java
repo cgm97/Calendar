@@ -1,10 +1,9 @@
 package com.kyumin.calendar.repository;
 
-import org.springframework.stereotype.Repository;
-
+import java.util.List;
 import com.kyumin.calendar.domain.CalendarDTO;
 
-@Repository
+//@Repository
 public class MemoryRepository implements CalendarRepository {
 
 	@Override
@@ -12,5 +11,11 @@ public class MemoryRepository implements CalendarRepository {
 		// TODO Auto-generated method stub
 		
 		System.out.println("memory : " + dto.toString());
+	}
+
+	@Override
+	public List<CalendarDTO> getCalendar() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
