@@ -2,6 +2,7 @@ package com.kyumin.calendar.repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,7 +22,7 @@ public class JdbcRepository implements CalendarRepository {
 	
 	private Connection conn;
 	private Statement stmt;
-//	private PreparedStatement pstmt;
+	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private List<CalendarDTO> calendarList;
 	
@@ -42,12 +43,27 @@ public class JdbcRepository implements CalendarRepository {
 			conn.close();
 			conn = null;
 		}	
+		if (pstmt != null) {
+			pstmt.close();
+			pstmt = null;
+		}
 	}
 	
 	@Override
-	public void insertCalendar(CalendarDTO dto) {
-		// TODO Auto-generated method stub
-
+	public void insertCalendar(CalendarDTO dto) throws Exception{
+		
+		String sql = "INSERT INTO CALENDAR (CALENDARNO,TITLE, STARTDATE , ENDDATE , CONTENT) "
+						+ "VALUES(CALENDARID.NEXTVAL,?,?,?,?)";
+		connectDB();
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, dto.getTitle());
+		pstmt.setString(2, dto.getStartDate());
+		pstmt.setString(3, dto.getEndDate());
+		pstmt.setString(4, dto.getContent());
+		
+		pstmt.executeUpdate();
+		disconnectDB();
 	}
 
 	@Override
@@ -61,6 +77,8 @@ public class JdbcRepository implements CalendarRepository {
 				dto.setTitle(rs.getString("TITLE"));
 				dto.setStartDate(rs.getString("STARTDATE"));
 				dto.setEndDate(rs.getString("ENDDATE"));
+				dto.setContent(rs.getString("CONTENT"));
+				dto.setCalendarNo(rs.getInt("CALENDARNO"));
 				calendarList.add(dto);
 			}
 				rs.close();

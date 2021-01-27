@@ -8,6 +8,7 @@ public class CalendarDTO {
 	private String title;
 	private String endDate;
 	private String content;
+	private int calendarNo;
 	
 	public String getStartDate() {
 		return startDate;
@@ -33,10 +34,16 @@ public class CalendarDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public int getCalendarNo() {
+		return calendarNo;
+	}
+	public void setCalendarNo(int calendarNo) {
+		this.calendarNo = calendarNo;
+	}
+	
 	@Override
 	public String toString() {
 		return "CalendarDTO [startDate=" + startDate + ", title=" + title + ", endDate=" + endDate + ", content="
-				+ content + "]";
+				+ content + ", calendarID=" + calendarNo + "]";
 	}
-	
 }

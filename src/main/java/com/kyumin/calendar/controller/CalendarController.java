@@ -49,10 +49,17 @@ public class CalendarController {
 		return "addCalendar";
 	}
 	
+	// 일정 수정
+	@RequestMapping(value="calendarUpdate", method=RequestMethod.GET)
+	public String calendarUpdate( @RequestParam("no") int calendarNo) {
+		// 진행 해야함 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 		return "updateCalendar";	
+	}
+	
 	// ajax 통신 - 일정 추가
 	@RequestMapping(value="/addCalendar", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<Object,Object> add(@RequestBody CalendarDTO dto) {
+	public Map<Object,Object> add(@RequestBody CalendarDTO dto) throws Exception{
 		calendarService.writeCalendar(dto);
 
 		return map;
