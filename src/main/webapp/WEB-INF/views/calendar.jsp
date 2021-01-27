@@ -23,14 +23,14 @@
       defaultView: 'dayGridMonth',
       businessHours: true, // 휴일 표시
       selectable: true,    
+      editable: true,
       dateClick : function(info){ // 선택한 날짜 값 뽑아내기
-    	  const clickDate = info.dateStr
-/*     	  const strArr = clickDate.split('-');
-    	  const year = strArr[0]
-    	  const month = strArr[1]
-    	  const day = strArr[2] */
-    	  /* alert(year+"년"+month+"월"+day+"일"); */
-    	  add_ClickSchedule(clickDate)
+    	  const clickDate = info.dateStr;
+    	  add_ClickSchedule(clickDate);
+      },
+      eventClick: function(info){ // 클릭한 일정 값 뽑아내기
+    	  const calendarNo = info.event.id;
+    	  click_Calendar(calendarNo);
       }
       ,googleCalendarApiKey : "AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE" 
       ,eventSources : [
@@ -43,15 +43,18 @@
           }]
       // 달력 일정 목록 
       ,events: [
+    	  // 나의 일정 목록
     	  <c:forEach var="showList" items="${getList}">
     	  {
+    		  id 	: '${showList.getCalendarNo()}',
     		  title : '${showList.getTitle()}',
-    		  start : '${showList.getStartDate()}'
+    		  start : '${showList.getStartDate()}',
+    		  end 	: '${showList.getEndDate()}'
     	  },
     	  </c:forEach>
     	  {
-    		  title : 'event2',
-    		  start : '2021-01-23'
+    		  title : '',
+    		  start : ''
     	  }
       ]
     });

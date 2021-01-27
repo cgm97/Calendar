@@ -16,6 +16,13 @@ function add_ClickSchedule(clickDate){ // 클릭된 날짜부터 일정 추가
 	//alert(year+"년"+month+"월"+day+"일");
 };
 
+function click_Calendar(calendarNo){ // 클릭된 일정 정보 불러오기 - 수정
+	var url = "calendarUpdate?no="+calendarNo;
+	var name = "일정 수정";
+	var option = "width = 600, height = 600 left = 100, top=50,location=no";
+	window.open(url,name,option)
+};
+
 $(function(){ // datepicker 선언
     $.datepicker.setDefaults({
         dateFormat: 'yy-mm-dd'         //Input Display Format 변경
@@ -34,25 +41,24 @@ $(function(){ // datepicker 선언
 });
 
 function send_save(){ // ajax 비동기 처리 - 일정 추가
+	var data = JSON.stringify($('#calendarData').serializeObject()); //form 자체의 내용을 전달
 	
-		var data = JSON.stringify($('#calendarData').serializeObject()); //form 자체의 내용을 전달
-		
-		/*var data = {}; // input에 입력된 내용을 전달 - 하지만 내가 원하는건 클릭한 날짜를 전달해야하지만, null 이 전달됨
-		data["title"] = $("#title").val();
-		data["startDate"] = $("#starDate").val(); // Null 이 입력됨..
-		data["endDate"] = $("#endDate").val();
-		data["content"] = $("#content").val();*/
-		
-		$.ajax({
-			data : data,	//JSON.stringify(data)
-			url : "/calendar/addCalendar",
-			type : "POST",
-			dataType : "json",
-			contentType : "application/json; charset=UTF-8",
-			success:function(data){
-				opener.parent.location.reload();
-				alert("추가 성공");
-				window.close();
-			},
-		});
-	};
+	/*var data = {}; // input에 입력된 내용을 전달 - 하지만 내가 원하는건 클릭한 날짜를 전달해야하지만, null 이 전달됨
+	data["title"] = $("#title").val();
+	data["startDate"] = $("#starDate").val(); // Null 이 입력됨..
+	data["endDate"] = $("#endDate").val();
+	data["content"] = $("#content").val();*/
+	
+	$.ajax({
+		data : data,	//JSON.stringify(data)
+		url : "/calendar/addCalendar",
+		type : "POST",
+		dataType : "json",
+		contentType : "application/json; charset=UTF-8",
+		success:function(data){
+			opener.parent.location.reload();
+			alert("일정 추가 성공");
+			window.close();
+		},
+	});
+};
