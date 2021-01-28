@@ -122,8 +122,7 @@
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.12.1</version>
 		</dependency>
-		
-		
+				
 		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
 		<dependency>
 		    <groupId>org.junit.jupiter</groupId>
@@ -137,6 +136,13 @@
 		    <groupId>com.oracle.database.jdbc</groupId>
 		    <artifactId>ojdbc8</artifactId>
 		    <version>21.1.0.0</version>
+		</dependency>
+		
+		<!-- DataSource -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+	  		<artifactId>spring-jdbc</artifactId>
+		  	<version>${org.springframework-version}</version>
 		</dependency>
 		
 	</dependencies>
