@@ -11,4 +11,5 @@ public interface CalendarService {
 	void clickDate(Date selectedDate, Model model);
 	void writeCalendar(CalendarDTO dto) throws Exception;
 	List<CalendarDTO> showCalendar() throws Exception;
+	CalendarDTO getListByCalendarNo(int calendarNo) throws Exception;
 }

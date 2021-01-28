@@ -1,5 +1,6 @@
 package com.kyumin.calendar.service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -34,23 +35,33 @@ public class CalendarServiceImpl implements CalendarService {
 	// 일정 목록 추가
 	@Override
 	public void writeCalendar(CalendarDTO dto) throws Exception{
-		/*
-       * 2021-01-25 부터 27 까지로 선택하여 일정 추기시 화면상에 26 일까지로 표시 되는 문제를 해결하기 위해  +1일
-		 */
-		cal = Calendar.getInstance();
-		Date before_endDate = change.parse(dto.getEndDate());
-		
-		cal.setTime(before_endDate);
-		cal.add(Calendar.DATE, 1);
-		String after_endDate = change.format(cal.getTime());
-		
-		dto.setEndDate(after_endDate);
-		dao.insertCalendar(dto);
+		dao.insertCalendar(chageEndDate(dto,1)); // 추가를 위한 +1일
 	}
 	
 	// 일정 목록 불러오기
 	@Override
 	public List<CalendarDTO> showCalendar() throws Exception {
 		return dao.getCalendar();
+	}
+	
+	// 선택된 calendarNo 정보 불러오기
+	@Override
+	public CalendarDTO getListByCalendarNo(int calendarNo) throws Exception{
+		CalendarDTO dto = dao.getCalendarByCalendarNo(calendarNo);
+		
+		return chageEndDate(dto,-1); // 조회를 위한 -1일
+	}
+	
+    //2021-01-25 부터 27 까지로 선택하여 일정 추기시 화면상에 26 일까지로 표시 되는 문제를 해결하기 위해  +1일 또는 -1일 
+	public CalendarDTO chageEndDate(CalendarDTO dto, int day) throws ParseException {
+		Date before_endDate = change.parse(dto.getEndDate());
+		
+		cal.setTime(before_endDate);
+		cal.add(Calendar.DATE, day);
+		
+		String after_endDate = change.format(cal.getTime());
+		dto.setEndDate(after_endDate);
+		
+		return dto;
 	}
 }

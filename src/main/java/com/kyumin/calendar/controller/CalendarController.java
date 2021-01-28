@@ -5,7 +5,6 @@ package com.kyumin.calendar.controller;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.kyumin.calendar.domain.CalendarDTO;
 import com.kyumin.calendar.service.CalendarService;
 
@@ -51,8 +49,8 @@ public class CalendarController {
 	
 	// 일정 수정
 	@RequestMapping(value="calendarUpdate", method=RequestMethod.GET)
-	public String calendarUpdate( @RequestParam("no") int calendarNo) {
-		// 진행 해야함 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	public String calendarUpdate( @RequestParam("no") int calendarNo, Model model) throws Exception{
+		model.addAttribute("getListByNo",calendarService.getListByCalendarNo(calendarNo));
  		return "updateCalendar";	
 	}
 	

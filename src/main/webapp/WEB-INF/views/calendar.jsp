@@ -23,7 +23,6 @@
       defaultView: 'dayGridMonth',
       businessHours: true, // 휴일 표시
       selectable: true,    
-      editable: true,
       dateClick : function(info){ // 선택한 날짜 값 뽑아내기
     	  const clickDate = info.dateStr;
     	  add_ClickSchedule(clickDate);

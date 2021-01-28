@@ -18,4 +18,10 @@ public class MemoryRepository implements CalendarRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public CalendarDTO getCalendarByCalendarNo(int calendarNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
