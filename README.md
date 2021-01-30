@@ -5,13 +5,16 @@
 	+ Google - 공휴일 API
 	+ Spring MVC Model
 	+ Ajax 비동기 통신
-
-구현 할 기능
+	+ Oracle DataBase
+	+ DataSource
+	+ Security
+구현 기능
 ```
-로그인, 로그아웃, 일정추가(달력클릭,버튼틀릭), 
-일정 조회, 일정 삭제
+로그인, 로그아웃
+일정추가(일자클릭,버튼틀릭), 일정 조회, 일정 삭제
 ```
 
 사용 해볼 데이터베이스 - DB
 ```
-Oracle, Mybatis, JPA
+JDBC, Mybatis, JPA
+```

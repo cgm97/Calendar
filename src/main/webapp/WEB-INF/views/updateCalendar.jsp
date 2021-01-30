@@ -19,8 +19,9 @@
 	 </div>
 	 <div>
 	 	<form id="calendarUpDate">
+	 		<input type="hidden" name="calendarNo" value="${getListByNo.calendarNo}">
 	 		<div>
-	 			제목 : <input type="text" name="title" id="title" placeholder="제목 입력" value="${getListByNo.title}" />
+	 			제목 : <input type="text" name="title" id="title"  value="${getListByNo.title}" />
 	 		</div>	
 	 		<br>
 	 		<div>
@@ -39,7 +40,7 @@
 	 		</div>
 	 		<br>
 	 	</form>
-	 		<input type= "button" value="수정" onclick=""/>
+	 		<input type= "button" value="수정" onclick="update()"/>
 	 </div>
 </body>
 </html>

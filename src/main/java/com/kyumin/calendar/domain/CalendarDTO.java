@@ -44,6 +44,6 @@ public class CalendarDTO {
 	@Override
 	public String toString() {
 		return "CalendarDTO [startDate=" + startDate + ", title=" + title + ", endDate=" + endDate + ", content="
-				+ content + ", calendarID=" + calendarNo + "]";
+				+ content + ", calendarNo=" + calendarNo + "]";
 	}
 }

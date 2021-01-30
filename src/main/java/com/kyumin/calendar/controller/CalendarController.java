@@ -62,4 +62,13 @@ public class CalendarController {
 
 		return map;
 	}
+	
+	// ajax 통신 - 일정 수정
+	@RequestMapping(value="/editCalendar", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<Object,Object> edit(@RequestBody CalendarDTO dto) throws Exception{
+		calendarService.editCalendar(dto);
+
+		return map;
+	}
 }

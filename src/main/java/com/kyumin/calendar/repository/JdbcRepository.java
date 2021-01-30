@@ -28,8 +28,7 @@ public class JdbcRepository implements CalendarRepository {
 	private DataSource dataSource;
 
 	@Override
-	public void insertCalendar(CalendarDTO dto) throws Exception{
-		
+	public void insertCalendar(CalendarDTO dto) throws Exception{	
 		String sql = "INSERT INTO CALENDAR (CALENDARNO,TITLE, STARTDATE , ENDDATE , CONTENT) "
 						+ "VALUES(CALENDARID.NEXTVAL,?,?,?,?)";
 		conn = dataSource.getConnection();
@@ -39,6 +38,23 @@ public class JdbcRepository implements CalendarRepository {
 		pstmt.setString(2, dto.getStartDate());
 		pstmt.setString(3, dto.getEndDate());
 		pstmt.setString(4, dto.getContent());
+		
+		pstmt.executeUpdate();
+		JdbcUtil.close(pstmt, conn);
+	}
+	
+	@Override
+	public void updateCalendar(CalendarDTO dto) throws Exception {
+		String sql = "UPDATE CALENDAR SET TITLE=?, STARTDATE=?, ENDDATE=?, CONTENT=? WHERE CALENDARNO=?";
+		
+		conn = dataSource.getConnection();
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, dto.getTitle());
+		pstmt.setString(2, dto.getStartDate());
+		pstmt.setString(3, dto.getEndDate());
+		pstmt.setString(4, dto.getContent());
+		pstmt.setInt(5, dto.getCalendarNo());
 		
 		pstmt.executeUpdate();
 		JdbcUtil.close(pstmt, conn);
@@ -83,11 +99,11 @@ public class JdbcRepository implements CalendarRepository {
 			dto.setStartDate(rs.getString("STARTDATE"));
 			dto.setEndDate(rs.getString("ENDDATE"));
 			dto.setContent(rs.getString("CONTENT"));
+			dto.setCalendarNo(rs.getInt("CALENDARNO"));
 		}
 		rs.close();
 		JdbcUtil.close(rs, pstmt, conn);
 		
 		return dto;
 	}
-
 }

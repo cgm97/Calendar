@@ -62,3 +62,20 @@ function send_save(){ // ajax 비동기 처리 - 일정 추가
 		},
 	});
 };
+
+function update(){ // ajax 비동기 처리 - 일정 수정
+	var data = JSON.stringify($('#calendarUpDate').serializeObject()); //form 자체의 내용을 전달
+
+	$.ajax({
+		data : data,	//JSON.stringify(data)
+		url : "/calendar/editCalendar",
+		type : "POST",
+		dataType : "json",
+		contentType : "application/json; charset=UTF-8",
+		success:function(data){
+			opener.parent.location.reload();
+			alert("일정 수정 성공");
+			window.close();
+		},
+	});
+};
