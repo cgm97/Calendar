@@ -79,3 +79,19 @@ function update(){ // ajax 비동기 처리 - 일정 수정
 		},
 	});
 };
+
+function btnDelete(){ // ajax 비동기 처리 - 일정 삭제
+	var data = $("#calendarNo").val(); // 일정번호
+	console.log(data);
+	$.ajax({
+		data : data,
+		url : "/calendar/deleteCalendar",
+		type : "POST",
+		contentType : "application/json; charset=UTF-8",
+		success:function(data){
+			opener.parent.location.reload();
+			alert("일정 삭제 성공");
+			window.close();
+		},
+	});
+};

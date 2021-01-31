@@ -59,6 +59,19 @@ public class JdbcRepository implements CalendarRepository {
 		pstmt.executeUpdate();
 		JdbcUtil.close(pstmt, conn);
 	}
+	
+	@Override
+	public void deleteCalender(int calendarNo) throws Exception {
+		String sql = "DELETE FROM CALENDAR WHERE CALENDARNO=?";
+		
+		conn = dataSource.getConnection();
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, calendarNo);
+		
+		pstmt.executeUpdate();
+		JdbcUtil.close(pstmt, conn);
+	}
 
 	@Override
 	public List<CalendarDTO> getCalendar() throws Exception {

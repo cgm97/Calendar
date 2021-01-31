@@ -44,6 +44,12 @@ public class CalendarServiceImpl implements CalendarService {
 		dao.updateCalendar(changeEndDate(dto,1)); // 수정을 위한 +1일
 	}
 	
+	// 일정 삭제
+	@Override
+	public void deleteCalender(int calendarNo) throws Exception {
+		dao.deleteCalender(calendarNo);
+	}
+	
 	// 일정 목록 불러오기
 	@Override
 	public List<CalendarDTO> showCalendar() throws Exception {

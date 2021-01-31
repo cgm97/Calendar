@@ -51,7 +51,7 @@ public class CalendarController {
 	@RequestMapping(value="calendarUpdate", method=RequestMethod.GET)
 	public String calendarUpdate( @RequestParam("no") int calendarNo, Model model) throws Exception{
 		model.addAttribute("getListByNo",calendarService.getListByCalendarNo(calendarNo));
- 		return "updateCalendar";	
+ 		return "editCalendar";	
 	}
 	
 	// ajax 통신 - 일정 추가
@@ -70,5 +70,12 @@ public class CalendarController {
 		calendarService.editCalendar(dto);
 
 		return map;
+	}
+	
+	// ajax 통신 - 일정 삭제
+	@RequestMapping(value="/deleteCalendar", method=RequestMethod.POST)
+	@ResponseBody
+	public void delete(@RequestBody int calendarNo) throws Exception{
+		calendarService.deleteCalender(calendarNo);
 	}
 }
