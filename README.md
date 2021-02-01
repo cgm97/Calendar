@@ -8,6 +8,7 @@
 	+ Oracle DataBase
 	+ DataSource
 	+ Security
+	+ AOP
 구현 기능
 ```
 로그인, 로그아웃
