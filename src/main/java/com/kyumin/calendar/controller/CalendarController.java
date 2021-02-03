@@ -46,7 +46,7 @@ public class CalendarController {
 	}
 	
 	// 일정 수정
-	@RequestMapping(value="calendarUpdate", method=RequestMethod.GET)
+	@RequestMapping(value="/calendarUpdate", method=RequestMethod.GET)
 	public String calendarUpdate( @RequestParam("no") int calendarNo, Model model) throws Exception{
 		model.addAttribute("getListByNo",calendarService.getListByCalendarNo(calendarNo));
  		return "editCalendar";	

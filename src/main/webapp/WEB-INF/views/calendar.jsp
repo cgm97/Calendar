@@ -66,10 +66,11 @@
 	<title>일정 관리 프로젝트</title>
 </head>
 	<body>
-		<h2 style="text-align: center;">My Calendar</h2>
+		<h2 style="text-align: center;">My Calendar ${loginedMemberId}</h2>
 	  <div id='calendar' style="position: relative;" >
-	  	<button class="add-btn" type="button" onclick="add_btnSchedule();">일정추가</button>
-	  	<button class="login-btn" type="button" onclick="location.href='login'">로그인</button>
+	  	<c:if test="${loginedMemberId ne null}"><button class="add-btn" type="button" onclick="add_btnSchedule();">일정추가</button></c:if>
+	  	<c:if test="${loginedMemberId eq null}"><button class="login-btn" type="button" onclick="login_form();">로그인</button></c:if>
+	  	<c:if test="${loginedMemberId ne null}"><button class="login-btn" type="button" onclick="location.href='logout'">로그아웃</button></c:if>
 	  </div>
 	</body>
 </html>
