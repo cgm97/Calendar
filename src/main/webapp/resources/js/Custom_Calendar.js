@@ -1,4 +1,3 @@
-  
 function add_btnSchedule(){ // 버튼 클릭 일정 추가
 	var url = "btnSelected";
 	var name = "일정 추가";

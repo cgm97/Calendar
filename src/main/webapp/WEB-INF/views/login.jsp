@@ -7,11 +7,11 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 </head>
-<body>
-	<form action="<c:url value="/login"/>" method="POST">
-		<input type="text" id="id" name="id" placeholder="ID" /><br>
-		<input type="password" id="pw" name="pw" placeholder="PASSWORD" /><br><br>
-		<input type="submit" value="호그인" />
+<body style="text-align: center">
+	<form action="<c:url value="/login.do"/>" method="POST">
+		<input type="text" id="loginId" name="loginId" placeholder="ID" /><br>
+		<input type="password" id="loginPw" name="loginPw" placeholder="PASSWORD" /><br><br>
+		<input type="submit" value="로그인" />
 		<button type="button" onclick="location.href='join'">회원가입</button>
 	</form>
 </body>
