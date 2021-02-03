@@ -29,15 +29,16 @@ public class JdbcRepository implements CalendarRepository {
 
 	@Override
 	public void insertCalendar(CalendarDTO dto) throws Exception{	
-		String sql = "INSERT INTO CALENDAR (CALENDARNO,TITLE, STARTDATE , ENDDATE , CONTENT) "
-						+ "VALUES(CALENDARID.NEXTVAL,?,?,?,?)";
+		String sql = "INSERT INTO CALENDAR (CALENDARNO, LOGINID, TITLE, STARTDATE , ENDDATE , CONTENT) "
+						+ "VALUES(CALENDARID.NEXTVAL,?,?,?,?,?)";
 		conn = dataSource.getConnection();
 		pstmt = conn.prepareStatement(sql);
 		
-		pstmt.setString(1, dto.getTitle());
-		pstmt.setString(2, dto.getStartDate());
-		pstmt.setString(3, dto.getEndDate());
-		pstmt.setString(4, dto.getContent());
+		pstmt.setString(1, dto.getLoginId());
+		pstmt.setString(2, dto.getTitle());
+		pstmt.setString(3, dto.getStartDate());
+		pstmt.setString(4, dto.getEndDate());
+		pstmt.setString(5, dto.getContent());
 		
 		pstmt.executeUpdate();
 		JdbcUtil.close(pstmt, conn);
@@ -74,11 +75,12 @@ public class JdbcRepository implements CalendarRepository {
 	}
 
 	@Override
-	public List<CalendarDTO> getCalendar() throws Exception {
-		String sql = "select * from CALENDAR";
+	public List<CalendarDTO> getCalendar(String getListById) throws Exception {
+		String sql = "select * from CALENDAR WHERE LOGINID=?";
 		conn = dataSource.getConnection();
 		
 		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, getListById);
 		rs = pstmt.executeQuery();
 		
 		calendarList = new ArrayList<CalendarDTO>();
@@ -89,6 +91,7 @@ public class JdbcRepository implements CalendarRepository {
 			dto.setEndDate(rs.getString("ENDDATE"));
 			dto.setContent(rs.getString("CONTENT"));
 			dto.setCalendarNo(rs.getInt("CALENDARNO"));
+
 			calendarList.add(dto);
 		}
 		rs.close();

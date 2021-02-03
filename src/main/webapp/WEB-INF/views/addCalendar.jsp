@@ -13,7 +13,7 @@
 	<script src='<c:url value="/js/AjaxSerializeObject.js" />'></script>
 		<title>일정 추가</title>
 </head>
-<body>
+<body style="text-align: center">
 	 <div>
 	 	<h1>일정 추가</h1>
 	 </div>

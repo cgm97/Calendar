@@ -35,6 +35,7 @@ public class CalendarServiceImpl implements CalendarService {
 	// 일정 목록 추가
 	@Override
 	public void writeCalendar(CalendarDTO dto) throws Exception{
+		dto.setLoginId("cgm97");
 		dao.insertCalendar(changeEndDate(dto,1)); // 추가를 위한 +1일
 	}
 	
@@ -52,8 +53,8 @@ public class CalendarServiceImpl implements CalendarService {
 	
 	// 일정 목록 불러오기
 	@Override
-	public List<CalendarDTO> showCalendar() throws Exception {
-		return dao.getCalendar();
+	public List<CalendarDTO> showCalendar(String getListById) throws Exception {
+		return dao.getCalendar(getListById);
 	}
 	
 	// 선택된 calendarNo 정보 불러오기

@@ -12,6 +12,6 @@ public interface CalendarService {
 	void writeCalendar(CalendarDTO dto) throws Exception;
 	void editCalendar(CalendarDTO ddto) throws Exception;
 	void deleteCalender(int calendarNo) throws Exception;
-	List<CalendarDTO> showCalendar() throws Exception;
+	List<CalendarDTO> showCalendar(String getListById) throws Exception;
 	CalendarDTO getListByCalendarNo(int calendarNo) throws Exception;
 }

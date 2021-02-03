@@ -1,7 +1,5 @@
 package com.kyumin.calendar.controller;
 
-
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +26,7 @@ public class CalendarController {
 	@GetMapping("/")
 	public String Calendar(Model model) throws Exception {
 		// 나의 일정 가져오기
-		model.addAttribute("getList",calendarService.showCalendar());
+		model.addAttribute("getList",calendarService.showCalendar("cgm97"));
 
 		return "calendar";
 	}

@@ -4,12 +4,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CalendarDTO {
+	private String loginId;
 	private String startDate;
 	private String title;
 	private String endDate;
 	private String content;
 	private int calendarNo;
 	
+	
+	public String getLoginId() {
+		return loginId;
+	}
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
+	}
 	public String getStartDate() {
 		return startDate;
 	}

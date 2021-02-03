@@ -8,6 +8,7 @@
 <link href="<c:url value="/css/FullCalendar.css" />" rel='stylesheet' />
 <script src='<c:url value="/js/FullCalendar.js" />'></script>
 <script src='<c:url value="/js/Custom_Calendar.js" />'></script>
+<script src='<c:url value="/js/Custom_member.js" />'></script>
 <script src='<c:url value="/js/gcal.js" />'></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -68,6 +69,7 @@
 		<h2 style="text-align: center;">My Calendar</h2>
 	  <div id='calendar' style="position: relative;" >
 	  	<button class="add-btn" type="button" onclick="add_btnSchedule();">일정추가</button>
+	  	<button class="login-btn" type="button" onclick="location.href='login'">로그인</button>
 	  </div>
 	</body>
 </html>
