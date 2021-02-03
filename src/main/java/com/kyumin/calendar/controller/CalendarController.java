@@ -3,6 +3,9 @@ package com.kyumin.calendar.controller;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -24,9 +27,11 @@ public class CalendarController {
 	private Map<Object,Object> map = new HashMap<Object,Object>();
 	
 	@GetMapping("/")
-	public String Calendar(Model model) throws Exception {
+	public String Calendar(Model model, HttpSession session) throws Exception {
+		
+		String getCalendarById = (String) session.getAttribute("loginedMemberId");
 		// 나의 일정 가져오기
-		model.addAttribute("getList",calendarService.showCalendar("cgm97"));
+		model.addAttribute("getList",calendarService.showCalendar(getCalendarById));
 
 		return "calendar";
 	}
