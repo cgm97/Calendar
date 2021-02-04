@@ -55,8 +55,16 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/join.do", method=RequestMethod.POST)
-	@ResponseBody
-	public MemberDTO join(MemberDTO dto) {
-		return dto;	
+	public String join(MemberDTO dto, HttpSession session) throws Exception {
+		int result = memberService.createMember(dto);
+		
+		if(result != -1) {
+			session.setAttribute("loginedMemberName","회원가입 성공");
+		}
+		else {
+			session.setAttribute("loginedMemberName","회원가입 실패 - 아이디 중복");
+		}
+		
+		return "redirect:/";
 	}
 }

@@ -35,7 +35,6 @@ public class CalendarServiceImpl implements CalendarService {
 	// 일정 목록 추가
 	@Override
 	public void writeCalendar(CalendarDTO dto) throws Exception{
-		dto.setLoginId("cgm97");
 		dao.insertCalendar(changeEndDate(dto,1)); // 추가를 위한 +1일
 	}
 	

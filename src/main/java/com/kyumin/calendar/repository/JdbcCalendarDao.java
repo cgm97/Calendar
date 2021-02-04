@@ -3,22 +3,17 @@ package com.kyumin.calendar.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-
 import com.kyumin.calendar.common.JdbcUtil;
 import com.kyumin.calendar.domain.CalendarDTO;
-import com.kyumin.calendar.domain.LoginDTO;
 
 @Repository
-public class JdbcRepository implements CalendarRepository {
+public class JdbcCalendarDao implements CalendarRepository {
 	
 	private Connection conn;
 	private PreparedStatement pstmt;
@@ -120,30 +115,6 @@ public class JdbcRepository implements CalendarRepository {
 			dto.setCalendarNo(rs.getInt("CALENDARNO"));
 		}
 		rs.close();
-		JdbcUtil.close(rs, pstmt, conn);
-		
-		return dto;
-	}
-
-	@Override
-	public LoginDTO memberCheckById(LoginDTO dto){
-		String sql = "select * from MEMBER WHERE LOGINID=? AND LOGINPW=?";
-		try {
-			conn = dataSource.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, dto.getLoginId());
-			pstmt.setString(2, dto.getLoginPw());
-			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				dto.setName(rs.getString("NAME"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		JdbcUtil.close(rs, pstmt, conn);
 		
 		return dto;

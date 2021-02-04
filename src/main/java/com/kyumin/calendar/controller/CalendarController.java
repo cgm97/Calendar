@@ -60,9 +60,11 @@ public class CalendarController {
 	// ajax 통신 - 일정 추가
 	@RequestMapping(value="/addCalendar", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<Object,Object> add(@RequestBody CalendarDTO dto) throws Exception{
+	public Map<Object,Object> add(@RequestBody CalendarDTO dto, HttpSession session) throws Exception{
+		String loginId = (String) session.getAttribute("loginedMemberId");
+		dto.setLoginId(loginId);
+		
 		calendarService.writeCalendar(dto);
-
 		return map;
 	}
 	

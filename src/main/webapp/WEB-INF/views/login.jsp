@@ -19,6 +19,5 @@
 		<input type="password" id="loginPw" name="loginPw" placeholder="PASSWORD" /><br><br>
 	</form>
 	<input type="button" value="로그인" onclick="login()" />
-	<button type="button" onclick="location.href='join'">회원가입</button>
 </body>
 </html>
