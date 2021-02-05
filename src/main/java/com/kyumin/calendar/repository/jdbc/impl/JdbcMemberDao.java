@@ -1,4 +1,4 @@
-package com.kyumin.calendar.repository;
+package com.kyumin.calendar.repository.jdbc.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kyumin.calendar.common.JdbcUtil;
 import com.kyumin.calendar.domain.LoginDTO;
 import com.kyumin.calendar.domain.MemberDTO;
+import com.kyumin.calendar.repository.jdbc.MemberRepository;
 
 @Repository
 public class JdbcMemberDao implements MemberRepository {
@@ -25,10 +26,7 @@ public class JdbcMemberDao implements MemberRepository {
 	
 	@Override // 로그인 인증
 	public LoginDTO memberCheckById(LoginDTO dto){
-		
-//		String sql1 = "UPDATE MEMBER SET LASTLOGIN=SYSDATE"+
-//				"WHERE NAME=(SELECT NAME FROM MEMBER WHERE LOGINID=? AND LOGINPW=?)";
-		
+	
 		String sql = "SELECT NAME FROM MEMBER WHERE LOGINID=? AND LOGINPW=?";
 		
 		try {
@@ -48,7 +46,7 @@ public class JdbcMemberDao implements MemberRepository {
 			e.printStackTrace();
 		}
 		JdbcUtil.close(rs, pstmt, conn);
-		
+
 		return dto;
 	}
 
@@ -76,5 +74,20 @@ public class JdbcMemberDao implements MemberRepository {
 		
 		return result;
 	}
+	
+	@Override
+	public void updateLastLogin(String loginId) {
+		String sql = "UPDATE MEMBER SET LASTLOGIN=SYSDATE WHERE LOGINID=?";
+		try {
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, loginId);
 
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JdbcUtil.close(pstmt, conn);
+	}
 }

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.kyumin.calendar.service.CalendarServiceImpl;
+import com.kyumin.calendar.service.impl.CalendarServiceImpl;
 
 public class BeanTest {
 	

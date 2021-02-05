@@ -1,4 +1,4 @@
-package com.kyumin.calendar.repository;
+package com.kyumin.calendar.repository.jdbc;
 
 import java.util.List;
 import com.kyumin.calendar.domain.CalendarDTO;

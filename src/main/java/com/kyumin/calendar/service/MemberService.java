@@ -7,4 +7,6 @@ public interface MemberService {
 	LoginDTO loginCheck(LoginDTO dto) throws Exception;
 
 	int createMember(MemberDTO dto) throws Exception;
+
+	void updateLastLogin(String loginId);
 }

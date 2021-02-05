@@ -12,6 +12,7 @@ public class MemberDTO {
 	private String email;
 	private Date regDate;
 	private Date lastDate;
+	
 	public String getLoginId() {
 		return loginId;
 	}
