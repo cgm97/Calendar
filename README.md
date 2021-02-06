@@ -4,14 +4,16 @@
 	+ FullCalendar - API
 	+ Google - 공휴일 API
 	+ Spring MVC Model
-	+ Ajax 비동기 통신
+	+ Ajax
 	+ Oracle DataBase
 	+ DataSource
+	+ Intercetor
 	+ Security
 	+ AOP
+
 구현 기능
 ```
-로그인, 로그아웃
+로그인, 로그아웃, 로그인 체크(권한)
 일정추가(일자클릭,버튼틀릭), 일정 조회, 일정 삭제
 ```
 

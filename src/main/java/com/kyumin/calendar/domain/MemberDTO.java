@@ -49,4 +49,10 @@ public class MemberDTO {
 	public void setLastDate(Date lastDate) {
 		this.lastDate = lastDate;
 	}
+
+	@Override
+	public String toString() {
+		return "MemberDTO [loginId=" + loginId + ", loginPw=" + loginPw + ", name=" + name + ", email=" + email
+				+ ", regDate=" + regDate + ", lastDate=" + lastDate + "]";
+	}	
 }
