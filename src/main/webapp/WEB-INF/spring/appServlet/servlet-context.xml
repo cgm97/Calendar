@@ -32,7 +32,9 @@
 			<mapping path="/calendarSelected"/>
 			<mapping path="/btnSelected"/>
 			<mapping path="/calendarUpdate"/>
-			<mapping path="/btnSelected"/>
+			<mapping path="/addCalendar"/>
+			<mapping path="/editCalendar"/>
+			<mapping path="/deleteCalendar"/>
 			<beans:ref bean="beforeInterceptor"/>
 		</interceptor>
 	</interceptors>

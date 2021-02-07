@@ -18,6 +18,7 @@
 		<input type="text" id="loginId" name="loginId" placeholder="ID" /><br>
 		<input type="password" id="loginPw" name="loginPw" placeholder="PASSWORD" /><br><br>
 	</form>
-	<input type="button" value="로그인" onclick="login()" />
+	<input type="button" value="로그인" onclick="login()" /><br><br>
+	<div>${infomation}</div>
 </body>
 </html>
