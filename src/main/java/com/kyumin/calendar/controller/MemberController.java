@@ -73,4 +73,16 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+	@RequestMapping(value="/duplication", method=RequestMethod.POST)
+	@ResponseBody
+	public String dulpliCheck(@RequestBody String check_id) {
+		String ID = check_id.trim();
+		int id_dupCheck = memberService.idDuplication(ID);
+		
+		if(id_dupCheck == 1) {
+			return "success";	// 사용 가능		
+		}else {
+			return "failed";	
+		}
+	}
 }

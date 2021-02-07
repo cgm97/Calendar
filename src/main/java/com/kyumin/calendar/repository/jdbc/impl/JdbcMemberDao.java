@@ -90,4 +90,28 @@ public class JdbcMemberDao implements MemberRepository {
 		}
 		JdbcUtil.close(pstmt, conn);
 	}
+
+	@Override
+	public int idDupCheck(String iD) {
+		int result = 1; // 존재 x
+		String sql = "SELECT LOGINID FROM MEMBER WHERE LOGINID=?";
+		try {
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, iD);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = 0; //존재 o
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JdbcUtil.close(rs, pstmt, conn);
+
+		return result;
+	}
 }

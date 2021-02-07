@@ -27,5 +27,11 @@ public class MemberServiceImpl implements MemberService {
 	public void updateLastLogin(String loginId) {
 		dao.updateLastLogin(loginId);
 	}
+
+	@Override
+	public int idDuplication(String iD) {
+		// TODO Auto-generated method stub
+		return dao.idDupCheck(iD);
+	}
 	
 }

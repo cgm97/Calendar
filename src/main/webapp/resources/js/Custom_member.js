@@ -20,3 +20,28 @@ function login(){ // ajax 비동기 처리 - 로그인 처리
 		},
 	});
 };
+
+function duplication(){
+	var data = $("#loginId").val();
+	if(data == ""){
+		$('.dupText').text('ID를 입력해주세요.');
+	}else{
+		$.ajax({
+			data : data,	//JSON.stringify(data)
+			url : "/calendar/duplication",
+			type : "POST",
+			dataType : "text",
+			contentType : "text/plain; charset=UTF-8",
+			success:function(data){
+				if(data == 'success'){
+					$('.dupText').text('사용 가능한 ID');					
+				}else{
+					$('.dupText').text('이미 등록된 ID');	
+				}			
+			},
+			error:function(){
+				$('.dupText').text('통신 실패');
+			}
+		});
+	}
+};
