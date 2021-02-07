@@ -1,3 +1,12 @@
+$(document).ready(function(){ //영어 and 숫자만 입력
+	$('#loginId').keyup(function(event){
+	    if (!(event.keyCode >=37 && event.keyCode<=40)) {
+	        var inputVal = $(this).val();
+	        $(this).val(inputVal.replace(/[^a-z0-9]/gi,''));
+	    }
+	});
+});
+
 function login_form(){ // 버튼 클릭 로그인
 	var url = "login";
 	var name = "로그인";

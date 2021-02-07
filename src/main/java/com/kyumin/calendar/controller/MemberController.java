@@ -79,7 +79,7 @@ public class MemberController {
 		String ID = check_id.trim();
 		int id_dupCheck = memberService.idDuplication(ID);
 		
-		if(id_dupCheck == 1) {
+		if(id_dupCheck == 0) {
 			return "success";	// 사용 가능		
 		}else {
 			return "failed";	

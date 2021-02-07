@@ -93,7 +93,7 @@ public class JdbcMemberDao implements MemberRepository {
 
 	@Override
 	public int idDupCheck(String iD) {
-		int result = 1; // 존재 x
+		int result = 0; // 존재 x
 		String sql = "SELECT LOGINID FROM MEMBER WHERE LOGINID=?";
 		try {
 			conn = dataSource.getConnection();
@@ -104,7 +104,7 @@ public class JdbcMemberDao implements MemberRepository {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				result = 0; //존재 o
+				result = 1; //존재 o
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
