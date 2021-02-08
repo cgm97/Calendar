@@ -16,10 +16,15 @@
 	<form action="<c:url value="/join.do"/>" method="POST">
 		<label>아이디    : </label><input type="text" id="loginId" name="loginId" placeholder="ID" /><button id="check" type="button" onclick="duplication();">중복확인</button><br>
 		<div class="dupText"></div>
+		
 		<label>비밀번호 : </label><input type="password" id="loginPw" name="loginPw" placeholder="PASSWORD" /><br>
+		<label>비밀번호 체크 : </label><input type="password" id="pwcheck" name="pwcheck" /><br>
+		<div id="check-success">비밀번호가 일치합니다.</div>
+		<div id="check-danger">비밀번호가 일치하지 않습니다.</div>
+		
 		<label>이름       : </label><input type="text" id="name" name="name" placeholder="이름" /><br>
 		<label>이메일    : </label><input type="text" id="email" name="email" placeholder="이메일" /><br>
-		<input type="submit" value="회원가입" />
+		<input type="submit" id="submit" value="회원가입" />
 		<input type="button" onclick="window.history.go(-1)" value="취소" />
 	</form>
 </body>

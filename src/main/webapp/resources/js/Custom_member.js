@@ -7,6 +7,26 @@ $(document).ready(function(){ //영어 and 숫자만 입력
 	});
 });
 
+$(function(){
+	$("#check-success").hide();
+	$("#check-danger").hide();
+	$("#submit").attr("disabled", "disabled");
+	$("input").keyup(function(){
+		var pwd1=$("#loginPw").val();
+		var pwd2=$("#pwcheck").val();
+		if(pwd1 != "" || pwd2 != ""){ 
+			if(pwd1 == pwd2){
+				$("#check-success").show();
+				$("#check-danger").hide();
+				$("#submit").removeAttr("disabled");
+			}else{
+				$("#check-success").hide();
+				$("#check-danger").show();
+			}
+		}
+	});
+});
+
 function login_form(){ // 버튼 클릭 로그인
 	var url = "login";
 	var name = "로그인";
