@@ -1,28 +1,36 @@
-#### 일정 관리 서비스 - Calendar
+#  CalendarService
 21/01/22 ~
-+ 사용
-	+ FullCalendar - API
-	+ Google - 공휴일 API
-	+ Spring MVC Model
-	+ Ajax
-	+ Oracle DataBase
-	+ DataSource
-	+ Intercetor
-	+ Security
-	+ AOP
+* Use
+	-[x]  FullCalendar - API
+	-[x]  Google - 공휴일 API
+	-[x]  Spring MVC Model
+	-[x]  Ajax
+	-[x]  Oracle DataBase
+	-[x]  DataSource
+	-[x]  Intercetor
+	-[ ]  Security
+	-[ ]  AOP
 
-구현 기능
-```
-로그인, 로그아웃, 로그인 체크(권한)
-일정추가(일자클릭,버튼틀릭), 일정 조회, 일정 삭제
-```
+##### 구현된 기능 - Member
+-[x] 로그인
+-[x] 로그아웃
+-[x] 로그인 세션 체크(권한)
+-[x] ID중복확인
+-[x] 비밀번호 체크
+-[ ] 마이페이지 - 수정,삭제
+##### 구현된 기능 - Calendar
+-[x] 일정 추가 (일자클릭,버튼틀릭)
+-[x] 일정 조회
+-[x] 일정 삭제
+-[ ] 일정 공유 - 초대
 
-사용 해볼 데이터베이스 - DB
-```
-JDBC, Mybatis, JPA
-```
+##### 사용 된 데이터베이스 - DB
+-[x] JDBC
+-[ ] JDBCTemplate
+-[ ] Mybatis
+-[ ] JPA
 
 
-DB Model
 
+#### DB Model
 ![DbModel](https://user-images.githubusercontent.com/65147348/106873828-37531580-6718-11eb-9367-e13f52cebe40.png)
