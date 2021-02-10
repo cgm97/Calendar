@@ -74,8 +74,8 @@ public class passwordEncoderTest {
 		lto.setLoginId("cgm97");
 		lto.setLoginPw("4495");
 		String a = pwEncoder.encode(lto.getLoginPw());
-		LoginDTO result = ms.loginCheck(lto);
-		System.out.println(result.getLoginPw());
+		//LoginDTO result = ms.loginCheck(lto);
+		//System.out.println(result.getLoginPw());
 		Assert.assertEquals(true, pwEncoder.matches("4495", a));
 	}
 }

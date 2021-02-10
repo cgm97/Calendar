@@ -14,9 +14,9 @@ public class BeforeInterceptor extends HandlerInterceptorAdapter{
 	@Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
-        logger.info("현재 접속 중인 ID 확인 : "+session.getAttribute("loginedMemberId"));
+        logger.info("현재 접속 중인 ID 확인 : "+session.getAttribute("loginedMember"));
         
-        if(session.getAttribute("loginedMemberId") == null) {
+        if(session.getAttribute("loginedMember") == null) {
 //        	session.setAttribute("infomation", "로그인 후 사용 가능합니다.");
 //        	response.sendRedirect(request.getContextPath() + "/login");
         	RequestDispatcher dispatcher = request.getRequestDispatcher("/login");

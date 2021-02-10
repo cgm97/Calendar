@@ -32,19 +32,16 @@ public class MemberController {
 	public Map<Object,Object> login(@RequestBody LoginDTO dto, HttpSession session) throws Exception {
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		logger.info("로그인 체크");
-		LoginDTO getUserInfo = memberService.loginCheck(dto);
+		MemberDTO getUserInfo = memberService.loginCheck(dto);
 		
 		if(getUserInfo.getName() != null) {
 			logger.info("로그인 성공");
+			session.setAttribute("loginedMember", getUserInfo);
 			session.setAttribute("loginedMemberId", getUserInfo.getLoginId());
-			session.setAttribute("loginedMemberName", getUserInfo.getName());
-			
-			logger.info("마지막 로그인 날짜 업데이트");
-			memberService.updateLastLogin(getUserInfo.getLoginId());
 		}
 		else {
 			logger.info("로그인 실패");
-			session.setAttribute("loginedMemberName","로그인 실패");
+			//session.setAttribute("loginedMember","로그인 실패");
 		}
 		return map;
 	}

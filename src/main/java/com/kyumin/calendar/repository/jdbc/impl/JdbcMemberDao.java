@@ -4,11 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import com.kyumin.calendar.common.JdbcUtil;
+import com.kyumin.calendar.domain.CalendarDTO;
 import com.kyumin.calendar.domain.LoginDTO;
 import com.kyumin.calendar.domain.MemberDTO;
 import com.kyumin.calendar.repository.jdbc.MemberRepository;
@@ -25,9 +28,9 @@ public class JdbcMemberDao implements MemberRepository {
 	private DataSource dataSource;
 	
 	@Override // 로그인 인증
-	public LoginDTO memberCheckById(LoginDTO dto){
-	
-		String sql = "SELECT NAME FROM MEMBER WHERE LOGINID=? AND LOGINPW=?";
+	public String memberCheckById(LoginDTO dto){
+		String id = null;
+		String sql = "SELECT LOGINID FROM MEMBER WHERE LOGINID=? AND LOGINPW=?";
 		
 		try {
 			conn = dataSource.getConnection();
@@ -39,7 +42,7 @@ public class JdbcMemberDao implements MemberRepository {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				dto.setName(rs.getString("NAME"));
+				id = rs.getString("LOGINID");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -47,7 +50,7 @@ public class JdbcMemberDao implements MemberRepository {
 		}
 		JdbcUtil.close(rs, pstmt, conn);
 
-		return dto;
+		return id;
 	}
 
 	@Override
@@ -113,5 +116,34 @@ public class JdbcMemberDao implements MemberRepository {
 		JdbcUtil.close(rs, pstmt, conn);
 
 		return result;
+	}
+
+	@Override
+	public MemberDTO getMemberById(String id) {
+		String sql = "select * from MEMBER WHERE LOGINID=?";
+		MemberDTO dto = new MemberDTO();
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setLoginId(rs.getString("LOGINID"));
+				dto.setLoginPw(rs.getString("LOGINPW"));
+				dto.setName(rs.getString("NAME"));
+				dto.setEmail(rs.getString("EMAIL"));
+				dto.setRegDate(rs.getDate("REGDATE"));
+				dto.setLastDate(rs.getDate("LASTLOGIN"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		JdbcUtil.close(rs, pstmt, conn);
+
+		return dto;
 	}
 }
