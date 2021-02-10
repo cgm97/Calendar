@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import com.kyumin.calendar.common.JdbcUtil;
 import com.kyumin.calendar.domain.LoginDTO;
@@ -14,6 +15,7 @@ import com.kyumin.calendar.domain.MemberDTO;
 import com.kyumin.calendar.repository.jdbc.MemberRepository;
 
 @Repository
+@Primary
 public class JdbcMemberDao implements MemberRepository {
 	
 	private Connection conn;

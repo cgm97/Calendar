@@ -63,7 +63,7 @@ public class MemberController {
 	public String join(MemberDTO dto, HttpSession session) throws Exception {
 		int result = memberService.createMember(dto);
 		
-		if(result != -1) {
+		if(result > 0) {
 			session.setAttribute("result","회원가입 성공");
 		}
 		else {

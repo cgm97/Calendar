@@ -8,12 +8,14 @@ import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import com.kyumin.calendar.common.JdbcUtil;
 import com.kyumin.calendar.domain.CalendarDTO;
 import com.kyumin.calendar.repository.jdbc.CalendarRepository;
 
 @Repository
+@Primary
 public class JdbcCalendarDao implements CalendarRepository {
 	
 	private Connection conn;
