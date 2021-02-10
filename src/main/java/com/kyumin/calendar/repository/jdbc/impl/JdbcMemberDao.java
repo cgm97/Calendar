@@ -4,14 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import com.kyumin.calendar.common.JdbcUtil;
-import com.kyumin.calendar.domain.CalendarDTO;
 import com.kyumin.calendar.domain.LoginDTO;
 import com.kyumin.calendar.domain.MemberDTO;
 import com.kyumin.calendar.repository.jdbc.MemberRepository;
@@ -70,7 +67,7 @@ public class JdbcMemberDao implements MemberRepository {
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
-
+			e.printStackTrace();
 		}
 		
 		JdbcUtil.close(pstmt, conn);
@@ -88,7 +85,6 @@ public class JdbcMemberDao implements MemberRepository {
 
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JdbcUtil.close(pstmt, conn);
@@ -110,7 +106,6 @@ public class JdbcMemberDao implements MemberRepository {
 				result = 1; //존재 o
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JdbcUtil.close(rs, pstmt, conn);
@@ -139,7 +134,6 @@ public class JdbcMemberDao implements MemberRepository {
 				dto.setLastDate(rs.getDate("LASTLOGIN"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		JdbcUtil.close(rs, pstmt, conn);

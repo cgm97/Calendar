@@ -22,6 +22,7 @@ $(function(){
 			}else{
 				$("#check-success").hide();
 				$("#check-danger").show();
+				$("#submit").attr("disabled", "disabled");
 			}
 		}
 	});

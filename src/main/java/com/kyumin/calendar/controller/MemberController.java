@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,10 +39,11 @@ public class MemberController {
 			logger.info("로그인 성공");
 			session.setAttribute("loginedMember", getUserInfo);
 			session.setAttribute("loginedMemberId", getUserInfo.getLoginId());
+			session.removeAttribute("result");
 		}
 		else {
 			logger.info("로그인 실패");
-			//session.setAttribute("loginedMember","로그인 실패");
+			session.setAttribute("result","로그인 실패");
 		}
 		return map;
 	}
@@ -62,14 +64,20 @@ public class MemberController {
 		int result = memberService.createMember(dto);
 		
 		if(result != -1) {
-			session.setAttribute("loginedMemberName","회원가입 성공");
+			session.setAttribute("result","회원가입 성공");
 		}
 		else {
-			session.setAttribute("loginedMemberName","회원가입 실패 - 아이디 중복");
+			session.setAttribute("result","회원가입 실패 - 아이디 중복");
 		}
 		
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value="/mypage", method=RequestMethod.GET)
+	public String mypage() {	
+		return "mypage";	
+	}
+	
 	@RequestMapping(value="/duplication", method=RequestMethod.POST)
 	@ResponseBody
 	public String dulpliCheck(@RequestBody String check_id) {
