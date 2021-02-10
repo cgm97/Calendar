@@ -1,8 +1,5 @@
 package com.kyumin.calendar.domain;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class LoginDTO {
 	private String loginId;
 	private String loginPw;

@@ -2,9 +2,6 @@ package com.kyumin.calendar.domain;
 
 import java.util.Date;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class MemberDTO {
 	private String loginId;
 	private String loginPw;
