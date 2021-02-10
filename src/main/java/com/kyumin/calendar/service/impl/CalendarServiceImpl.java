@@ -18,15 +18,16 @@ import com.kyumin.calendar.service.CalendarService;
 public class CalendarServiceImpl implements CalendarService {
 	
 	@Autowired
-	private CalendarDTO calendarDTO;
-	@Autowired
 	private CalendarRepository dao;
+	private CalendarDTO calendarDTO;
 	
 	private SimpleDateFormat change = new SimpleDateFormat("yyyy-MM-dd");
 	private Calendar cal = Calendar.getInstance();
 	
 	@Override
 	public void clickDate(Date selectedDate, Model model) {
+		calendarDTO = new CalendarDTO();
+		
 		String startDate = change.format(selectedDate);
 
 		calendarDTO.setStartDate(startDate);

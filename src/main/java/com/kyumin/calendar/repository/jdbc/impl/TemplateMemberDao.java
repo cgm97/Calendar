@@ -11,7 +11,7 @@ import com.kyumin.calendar.domain.MemberDTO;
 import com.kyumin.calendar.repository.jdbc.MemberRepository;
 
 @Repository
-//@Primary
+@Primary
 public class TemplateMemberDao implements MemberRepository {
 
 	@Autowired
@@ -20,27 +20,40 @@ public class TemplateMemberDao implements MemberRepository {
 	@Override
 	public String memberCheckById(LoginDTO dto){
 		String sql = "SELECT LOGINID FROM MEMBER WHERE LOGINID=? AND LOGINPW=?";
+		String id = null;
 		try {
-			String id = jdbcTemplate.queryForObject(sql, new Object[]{dto.getLoginId(),dto.getLoginPw()}, String.class);	
+			id = jdbcTemplate.queryForObject(sql, new Object[]{dto.getLoginId(),dto.getLoginPw()}, String.class);	
+			System.out.println(id);
 			return id;
-		}catch(EmptyResultDataAccessException e) {
+		}catch(Exception e) {
 			return null;
 		}
 	}
 
 	@Override
 	public int memberInsert(MemberDTO dto){
+		int result = -1;
+
 		String sql = "INSERT INTO MEMBER (MEMBERNO, LOGINID, LOGINPW ,NAME ,EMAIL ,REGDATE, LASTLOGIN)"+
 				"VALUES(MEMBERNO.NEXTVAL, ?, ?, ?, ?,SYSDATE,SYSDATE)";
-
-		int result = jdbcTemplate.update(sql, dto.getLoginId(), dto.getLoginPw(), dto.getName(), dto.getEmail());
-		return result;
+		try {
+			result = jdbcTemplate.update(sql, dto.getLoginId(), dto.getLoginPw(), dto.getName(), dto.getEmail());
+			return result;
+		} catch (Exception e) {
+			return result;
+		}		
 	}
 
 	@Override
-	public void updateLastLogin(String loginId) {
+	public int updateLastLogin(String loginId) throws Exception{
 		String sql = "UPDATE MEMBER SET LASTLOGIN=SYSDATE WHERE LOGINID=?";
-		jdbcTemplate.update(sql, loginId);
+		int result = -1;
+		try {
+			result = jdbcTemplate.update(sql, loginId);
+			return result;
+		}catch(EmptyResultDataAccessException e) {
+			return result;
+		}
 	}
 
 	@Override

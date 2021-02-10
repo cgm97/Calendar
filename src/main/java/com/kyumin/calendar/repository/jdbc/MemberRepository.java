@@ -6,7 +6,7 @@ import com.kyumin.calendar.domain.MemberDTO;
 public interface MemberRepository {
 	String memberCheckById(LoginDTO dto) throws Exception;
 	int memberInsert(MemberDTO dto) throws Exception;
-	void updateLastLogin(String loginId);
+	int updateLastLogin(String loginId) throws Exception;
 	int idDupCheck(String iD);
 	MemberDTO getMemberById(String id);
 }

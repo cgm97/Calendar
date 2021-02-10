@@ -15,14 +15,17 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberRepository dao;
-	@Autowired
 	private MemberDTO mdto;
 	
 	@Override
 	public MemberDTO loginCheck(LoginDTO dto) throws Exception {
+		mdto = new MemberDTO();
 		String id = dao.memberCheckById(dto); //로그인 체크
-		dao.updateLastLogin(dto.getLoginId()); // 로그인기록
-		mdto = dao.getMemberById(id); // 해당 멤버 정보 가져오기
+		
+		if(id != null) {
+			dao.updateLastLogin(dto.getLoginId()); // 로그인기록
+			mdto = dao.getMemberById(id); // 해당 멤버 정보 가져오기			
+		}
 		return mdto;
 	}
 

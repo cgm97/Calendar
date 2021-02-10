@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import com.kyumin.calendar.common.JdbcUtil;
 import com.kyumin.calendar.domain.LoginDTO;
@@ -15,7 +14,7 @@ import com.kyumin.calendar.domain.MemberDTO;
 import com.kyumin.calendar.repository.jdbc.MemberRepository;
 
 @Repository
-@Primary
+//@Primary
 public class JdbcMemberDao implements MemberRepository {
 	
 	private Connection conn;
@@ -78,18 +77,21 @@ public class JdbcMemberDao implements MemberRepository {
 	}
 	
 	@Override
-	public void updateLastLogin(String loginId) {
+	public int updateLastLogin(String loginId) {
 		String sql = "UPDATE MEMBER SET LASTLOGIN=SYSDATE WHERE LOGINID=?";
+		int result = -1;
 		try {
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, loginId);
 
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		JdbcUtil.close(pstmt, conn);
+		
+		return result;
 	}
 
 	@Override

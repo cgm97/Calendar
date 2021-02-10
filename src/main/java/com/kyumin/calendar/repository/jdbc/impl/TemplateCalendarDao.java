@@ -11,7 +11,7 @@ import com.kyumin.calendar.domain.CalendarDTO;
 import com.kyumin.calendar.repository.jdbc.CalendarRepository;
 
 @Repository
-//@Primary
+@Primary
 public class TemplateCalendarDao implements CalendarRepository{
 
 	@Autowired
