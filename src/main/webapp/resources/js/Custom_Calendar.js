@@ -1,3 +1,14 @@
+function checkCorrectDate(){ // 날짜 비교
+	var startDate = new Date($("#startDate").val());
+	var endDate = new Date($("#endDate").val());
+	
+	if (startDate > endDate){
+		alert("날짜를 다시 입력 해주세요.");
+		return false;
+	}
+	return true;
+};
+
 function add_btnSchedule(){ // 버튼 클릭 일정 추가
 	var url = "btnSelected";
 	var name = "일정 추가";
@@ -40,43 +51,47 @@ $(function(){ // datepicker 선언
 });
 
 function send_save(){ // ajax 비동기 처리 - 일정 추가
-	var data = JSON.stringify($('#calendarData').serializeObject()); //form 자체의 내용을 전달
-	
-	/*var data = {}; // input에 입력된 내용을 전달 - 하지만 내가 원하는건 클릭한 날짜를 전달해야하지만, null 이 전달됨
+	if(checkCorrectDate()){
+		var data = JSON.stringify($('#calendarData').serializeObject()); //form 자체의 내용을 전달
+		
+		/*var data = {}; // input에 입력된 내용을 전달 - 하지만 내가 원하는건 클릭한 날짜를 전달해야하지만, null 이 전달됨
 	data["title"] = $("#title").val();
 	data["startDate"] = $("#starDate").val(); // Null 이 입력됨..
 	data["endDate"] = $("#endDate").val();
 	data["content"] = $("#content").val();*/
-	
-	$.ajax({
-		data : data,	//JSON.stringify(data)
-		url : "/calendar/addCalendar",
-		type : "POST",
-		dataType : "json",
-		contentType : "application/json; charset=UTF-8",
-		success:function(data){
-			opener.parent.location.reload();
-			alert("일정 추가 성공");
-			window.close();
-		},
-	});
+		
+		$.ajax({
+			data : data,	//JSON.stringify(data)
+			url : "/calendar/addCalendar",
+			type : "POST",
+			dataType : "json",
+			contentType : "application/json; charset=UTF-8",
+			success:function(data){
+				opener.parent.location.reload();
+				alert("일정 추가 성공");
+				window.close();
+			},
+		});		
+	}
 };
 
 function update(){ // ajax 비동기 처리 - 일정 수정
-	var data = JSON.stringify($('#calendarUpDate').serializeObject()); //form 자체의 내용을 전달
-
-	$.ajax({
-		data : data,	//JSON.stringify(data)
-		url : "/calendar/editCalendar",
-		type : "POST",
-		dataType : "json",
-		contentType : "application/json; charset=UTF-8",
-		success:function(data){
-			opener.parent.location.reload();
-			alert("일정 수정 성공");
-			window.close();
-		},
-	});
+	if(checkCorrectDate()){
+		var data = JSON.stringify($('#calendarUpDate').serializeObject()); //form 자체의 내용을 전달
+	
+		$.ajax({
+			data : data,	//JSON.stringify(data)
+			url : "/calendar/editCalendar",
+			type : "POST",
+			dataType : "json",
+			contentType : "application/json; charset=UTF-8",
+			success:function(data){
+				opener.parent.location.reload();
+				alert("일정 수정 성공");
+				window.close();
+			},
+		});
+	}
 };
 
 function btnDelete(){ // ajax 비동기 처리 - 일정 삭제
