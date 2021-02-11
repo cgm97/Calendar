@@ -10,8 +10,8 @@ import com.kyumin.calendar.domain.MemberDTO;
 import com.kyumin.calendar.repository.MemberRepository;
 import com.kyumin.calendar.service.MemberService;
 
-@Transactional(readOnly = true)
 @Service
+@Transactional
 public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
@@ -29,10 +29,10 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return mdto;
 	}
-
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	
 	@Override
-	public int createMember(MemberDTO dto) throws Exception {		
+	@Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+	public int createMember(MemberDTO dto) throws Exception{	
 		return dao.memberInsert(dto);
 	}
 

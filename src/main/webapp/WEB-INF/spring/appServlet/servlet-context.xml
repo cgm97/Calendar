@@ -24,7 +24,6 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.kyumin.calendar" />
-	
 	<beans:bean id="beforeInterceptor" class="com.kyumin.calendar.common.BeforeInterceptor"/>
 	<!-- 로그인 해야 사용 가능한 매핑 -->
 	<interceptors>

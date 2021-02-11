@@ -17,10 +17,10 @@ public class TransactionTest {
 	MemberService ms;
 	
 	@Test
-	public void transactionTest() throws Exception {
+	public void transactionTest() throws Exception{
 		MemberDTO dto = new MemberDTO();
 		
-		dto.setLoginId("junit234");
+		dto.setLoginId("111145");
 		dto.setLoginPw("1234");
 		dto.setName("유닛");
 		dto.setEmail("이메일");
