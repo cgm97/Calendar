@@ -1,4 +1,4 @@
-package com.kyumin.calendar.repository.jdbc.impl;
+package com.kyumin.calendar.repository.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kyumin.calendar.common.JdbcUtil;
 import com.kyumin.calendar.domain.LoginDTO;
 import com.kyumin.calendar.domain.MemberDTO;
-import com.kyumin.calendar.repository.jdbc.MemberRepository;
+import com.kyumin.calendar.repository.MemberRepository;
 
 @Repository
 //@Primary

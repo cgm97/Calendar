@@ -1,4 +1,4 @@
-package com.kyumin.calendar.repository.jdbc.impl;
+package com.kyumin.calendar.repository.jdbc.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

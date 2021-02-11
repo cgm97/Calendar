@@ -2,14 +2,15 @@ package com.kyumin.calendar.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kyumin.calendar.domain.LoginDTO;
 import com.kyumin.calendar.domain.MemberDTO;
-import com.kyumin.calendar.repository.jdbc.MemberRepository;
+import com.kyumin.calendar.repository.MemberRepository;
 import com.kyumin.calendar.service.MemberService;
 
-@Transactional
+@Transactional(readOnly = true)
 @Service
 public class MemberServiceImpl implements MemberService {
 	
@@ -29,8 +30,9 @@ public class MemberServiceImpl implements MemberService {
 		return mdto;
 	}
 
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 	@Override
-	public int createMember(MemberDTO dto) throws Exception {
+	public int createMember(MemberDTO dto) throws Exception {		
 		return dao.memberInsert(dto);
 	}
 

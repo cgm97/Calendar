@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.kyumin.calendar.domain.CalendarDTO;
-import com.kyumin.calendar.repository.jdbc.CalendarRepository;
+import com.kyumin.calendar.repository.CalendarRepository;
 import com.kyumin.calendar.service.CalendarService;
 
 @Service

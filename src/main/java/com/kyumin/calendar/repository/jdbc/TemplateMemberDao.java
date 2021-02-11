@@ -1,4 +1,4 @@
-package com.kyumin.calendar.repository.jdbc.impl;
+package com.kyumin.calendar.repository.jdbc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.kyumin.calendar.domain.LoginDTO;
 import com.kyumin.calendar.domain.MemberDTO;
-import com.kyumin.calendar.repository.jdbc.MemberRepository;
+import com.kyumin.calendar.repository.MemberRepository;
+import com.kyumin.calendar.repository.jdbc.mapper.MemberRowMapper;
 
 @Repository
 @Primary
@@ -22,11 +23,11 @@ public class TemplateMemberDao implements MemberRepository {
 		String sql = "SELECT LOGINID FROM MEMBER WHERE LOGINID=? AND LOGINPW=?";
 		String id = null;
 		try {
-			id = jdbcTemplate.queryForObject(sql, new Object[]{dto.getLoginId(),dto.getLoginPw()}, String.class);	
-			System.out.println(id);
+			id = jdbcTemplate.queryForObject(sql, new Object[]{dto.getLoginId(),dto.getLoginPw()}, String.class);
+			
 			return id;
 		}catch(Exception e) {
-			return null;
+			return id;
 		}
 	}
 
