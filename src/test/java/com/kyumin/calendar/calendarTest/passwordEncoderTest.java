@@ -20,10 +20,6 @@ public class passwordEncoderTest {
 	@Autowired
 	private ApplicationContext ac;
 	@Autowired
-	private MemberDTO dto;
-	@Autowired
-	private LoginDTO lto;
-	@Autowired
 	MemberService ms;
 	
 	@Before
@@ -53,7 +49,7 @@ public class passwordEncoderTest {
 		BCryptPasswordEncoder pwEncoder = 
 				(BCryptPasswordEncoder) ac.getBean("passwordEncoder");
 		
-
+		MemberDTO dto = new MemberDTO();
 		dto.setLoginId("test1");
 		dto.setLoginPw("4949");
 		String encodedPw = pwEncoder.encode(dto.getLoginPw());
@@ -70,12 +66,12 @@ public class passwordEncoderTest {
 	public void DB연동() throws Exception {
 		BCryptPasswordEncoder pwEncoder = 
 				(BCryptPasswordEncoder) ac.getBean("passwordEncoder");
-		
+		LoginDTO lto = new LoginDTO();
 		lto.setLoginId("cgm97");
 		lto.setLoginPw("4495");
 		String a = pwEncoder.encode(lto.getLoginPw());
-		//LoginDTO result = ms.loginCheck(lto);
-		//System.out.println(result.getLoginPw());
+		MemberDTO result = ms.loginCheck(lto);
+		System.out.println(result.getLoginPw());
 		Assert.assertEquals(true, pwEncoder.matches("4495", a));
 	}
 }
