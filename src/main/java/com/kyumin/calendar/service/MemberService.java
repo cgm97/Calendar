@@ -9,4 +9,6 @@ public interface MemberService {
 	int createMember(MemberDTO dto) throws Exception;
 
 	int idDuplication(String iD);
+
+	int editMember(MemberDTO dto);
 }

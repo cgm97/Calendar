@@ -41,5 +41,11 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.idDupCheck(iD);
 	}
+
+	@Override
+	public int editMember(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return dao.memberUpdate(dto);
+	}
 	
 }

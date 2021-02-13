@@ -144,4 +144,26 @@ public class JdbcMemberDao implements MemberRepository {
 
 		return dto;
 	}
+
+	@Override
+	public int memberUpdate(MemberDTO dto) {
+		String sql = "UPDATE MEMBER SET LOGINPW=?, NAME=?, EMAIL=? WHERE LOGINID=?";
+		int result = -1;
+		try {
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getLoginPw());
+			pstmt.setString(2, dto.getName());
+			pstmt.setString(3, dto.getEmail());
+			pstmt.setString(4, dto.getLoginId());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		JdbcUtil.close(pstmt, conn);
+		return result;
+	}
 }

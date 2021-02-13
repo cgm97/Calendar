@@ -9,4 +9,5 @@ public interface MemberRepository {
 	int updateLastLogin(String loginId) throws Exception;
 	int idDupCheck(String iD);
 	MemberDTO getMemberById(String id);
+	int memberUpdate(MemberDTO dto);
 }

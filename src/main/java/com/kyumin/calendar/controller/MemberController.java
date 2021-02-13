@@ -7,10 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
+
 import com.kyumin.calendar.domain.LoginDTO;
 import com.kyumin.calendar.domain.MemberDTO;
 import com.kyumin.calendar.service.MemberService;
@@ -74,6 +77,21 @@ public class MemberController {
 	
 	@RequestMapping(value="/mypage", method=RequestMethod.GET)
 	public String mypage() {	
+		return "mypage";	
+	}
+	
+	@RequestMapping(value="/mypage.do", method=RequestMethod.POST)
+	public String mypage(MemberDTO dto, Model model, HttpSession session) {	
+		logger.info(dto.toString());
+		int result = memberService.editMember(dto);
+
+		if(result == 1) {
+			session.setAttribute("loginedMember", dto);
+		}else {
+			result=-1;
+		}
+		model.addAttribute("result", result);
+		
 		return "mypage";	
 	}
 	

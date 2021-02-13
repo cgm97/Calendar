@@ -11,8 +11,10 @@
 <title>마이페이지</title>
 </head>
 <body style="text-align: center">
+	<c:if test="${result eq 1}">수정 완료</c:if>
+	<c:if test="${result eq -1}"></c:if>
 	<form action="<c:url value="/mypage.do"/>" method="POST">
-		<label>아이디    : </label><input type="text" id="loginId" name="loginId" value="${loginedMember.loginId}" /><br>
+		<label>아이디    : </label><input type="text" id="loginId" name="loginId" value="${loginedMember.loginId}" readOnly/><br>
 		<label>비밀번호 : </label><input type="password" id="loginPw" name="loginPw" value="${loginedMember.loginPw}"/><br>
 		<label>비밀번호 체크 : </label><input type="password" id="pwcheck" name="pwcheck" /><br>
 		<div id="check-success">비밀번호가 일치합니다.</div>
@@ -22,7 +24,7 @@
 		<label>가입날짜 : </label>${loginedMember.regDate}<br>
 		<label>최근로그인 : </label>${loginedMember.lastDate}<br>
 		<input type="submit" id="submit" value="수정" />
-		<input type="button" onclick="window.history.go(-1)" value="취소" />
+		<input type="button" onclick="location.href='<c:url value="/"/>'" value="취소" />
 	</form>
 </body>
 </html>

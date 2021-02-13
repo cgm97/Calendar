@@ -71,4 +71,11 @@ public class TemplateMemberDao implements MemberRepository {
 		return jdbcTemplate.queryForObject(sql, new MemberRowMapper(), id);
 	}
 
+	@Override
+	public int memberUpdate(MemberDTO dto) {
+		String sql = "UPDATE MEMBER SET LOGINPW=?, NAME=?, EMAIL=? WHERE LOGINID=?";
+		
+		return jdbcTemplate.update(sql,dto.getLoginPw(),dto.getName(),dto.getEmail(),dto.getLoginId());
+	}
+
 }
