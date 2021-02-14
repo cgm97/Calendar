@@ -32,11 +32,9 @@ public class JdbcMemberDao implements MemberRepository {
 		
 		try {
 			conn = dataSource.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			
+			pstmt = conn.prepareStatement(sql);		
 			pstmt.setString(1, dto.getLoginId());
 			pstmt.setString(2, dto.getLoginPw());
-			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -53,14 +51,12 @@ public class JdbcMemberDao implements MemberRepository {
 
 	@Override
 	public int memberInsert(MemberDTO dto){
-		int result = -1;
-		
+		int result = -1;	
 		String sql = "INSERT INTO MEMBER (MEMBERNO, LOGINID, LOGINPW ,NAME ,EMAIL ,REGDATE, LASTLOGIN)"+
 						"VALUES(MEMBERNO.NEXTVAL, ?, ?, ?, ?,SYSDATE,SYSDATE)";
 		try {
 			conn = dataSource.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			
+			pstmt = conn.prepareStatement(sql);			
 			pstmt.setString(1, dto.getLoginId());
 			pstmt.setString(2, dto.getLoginPw());
 			pstmt.setString(3, dto.getName());
@@ -80,6 +76,7 @@ public class JdbcMemberDao implements MemberRepository {
 	public int updateLastLogin(String loginId) {
 		String sql = "UPDATE MEMBER SET LASTLOGIN=SYSDATE WHERE LOGINID=?";
 		int result = -1;
+		
 		try {
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -98,12 +95,11 @@ public class JdbcMemberDao implements MemberRepository {
 	public int idDupCheck(String iD) {
 		int result = 0; // 존재 x
 		String sql = "SELECT LOGINID FROM MEMBER WHERE LOGINID=?";
+		
 		try {
 			conn = dataSource.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, iD);
-			
+			pstmt = conn.prepareStatement(sql);		
+			pstmt.setString(1, iD);			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -113,7 +109,6 @@ public class JdbcMemberDao implements MemberRepository {
 			e.printStackTrace();
 		}
 		JdbcUtil.close(rs, pstmt, conn);
-
 		return result;
 	}
 
@@ -123,8 +118,7 @@ public class JdbcMemberDao implements MemberRepository {
 		MemberDTO dto = new MemberDTO();
 		
 		try {
-			conn = dataSource.getConnection();
-			
+			conn = dataSource.getConnection();			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -141,14 +135,14 @@ public class JdbcMemberDao implements MemberRepository {
 			e.printStackTrace();
 		}	
 		JdbcUtil.close(rs, pstmt, conn);
-
 		return dto;
 	}
 
 	@Override
 	public int memberUpdate(MemberDTO dto) {
-		String sql = "UPDATE MEMBER SET LOGINPW=?, NAME=?, EMAIL=? WHERE LOGINID=?";
 		int result = -1;
+		String sql = "UPDATE MEMBER SET LOGINPW=?, NAME=?, EMAIL=? WHERE LOGINID=?";
+		
 		try {
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -161,8 +155,26 @@ public class JdbcMemberDao implements MemberRepository {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}	
+		JdbcUtil.close(pstmt, conn);
+		return result;
+	}
+
+	@Override
+	public int deleteById(String id) {
+		int result = -1;
+		String sql = "DELETE FROM MEMBER WHERE LOGINID=?";
 		
+		try {
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		JdbcUtil.close(pstmt, conn);
 		return result;
 	}

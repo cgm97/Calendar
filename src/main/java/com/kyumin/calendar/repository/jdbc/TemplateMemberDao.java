@@ -78,4 +78,11 @@ public class TemplateMemberDao implements MemberRepository {
 		return jdbcTemplate.update(sql,dto.getLoginPw(),dto.getName(),dto.getEmail(),dto.getLoginId());
 	}
 
+	@Override
+	public int deleteById(String id) {
+		String sql = "DELETE FROM MEMBER WHERE LOGINID=?";
+		
+		return jdbcTemplate.update(sql, id);
+	}
+
 }

@@ -11,4 +11,6 @@ public interface MemberService {
 	int idDuplication(String iD);
 
 	int editMember(MemberDTO dto);
+
+	int deleteById(String id);
 }

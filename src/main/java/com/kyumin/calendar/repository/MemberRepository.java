@@ -10,4 +10,5 @@ public interface MemberRepository {
 	int idDupCheck(String iD);
 	MemberDTO getMemberById(String id);
 	int memberUpdate(MemberDTO dto);
+	int deleteById(String id);
 }

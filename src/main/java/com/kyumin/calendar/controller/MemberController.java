@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.support.SessionStatus;
-
 import com.kyumin.calendar.domain.LoginDTO;
 import com.kyumin.calendar.domain.MemberDTO;
 import com.kyumin.calendar.service.MemberService;
@@ -93,6 +91,20 @@ public class MemberController {
 		model.addAttribute("result", result);
 		
 		return "mypage";	
+	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public String delete(String id, Model model, HttpSession session) {
+		logger.info(id+" 삭제 시작");
+		int result = memberService.deleteById(id);
+		
+		if(result == 1) {
+			model.addAttribute("result", id+" : 해당 유저 아이디 삭제 완료");
+		}
+		else {
+			model.addAttribute("result", "삭제 실패");
+		}
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/duplication", method=RequestMethod.POST)

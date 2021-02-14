@@ -31,7 +31,6 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	@Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
 	public int createMember(MemberDTO dto) throws Exception{	
 		return dao.memberInsert(dto);
 	}
@@ -46,6 +45,12 @@ public class MemberServiceImpl implements MemberService {
 	public int editMember(MemberDTO dto) {
 		// TODO Auto-generated method stub
 		return dao.memberUpdate(dto);
+	}
+
+	@Override
+	public int deleteById(String id) {
+		// TODO Auto-generated method stub
+		return dao.deleteById(id);
 	}
 	
 }
