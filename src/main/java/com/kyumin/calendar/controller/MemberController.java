@@ -94,15 +94,17 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
-	public String delete(String id, Model model, HttpSession session) {
-		logger.info(id+" 삭제 시작");
-		int result = memberService.deleteById(id);
+	public String delete(MemberDTO dto, HttpSession session) {
+		logger.info(dto.getLoginId()+" 삭제 시작");
+		int result = memberService.deleteById(dto.getLoginId());
 		
 		if(result == 1) {
-			model.addAttribute("result", id+" : 해당 유저 아이디 삭제 완료");
+			session.setAttribute("result", dto.getLoginId()+" -> 해당 유저 아이디 삭제 완료");
+			session.removeAttribute("loginedMember");
+			session.removeAttribute("loginedMemberId");
 		}
 		else {
-			model.addAttribute("result", "삭제 실패");
+			session.setAttribute("result", "삭제 실패");
 		}
 		return "redirect:/";
 	}
