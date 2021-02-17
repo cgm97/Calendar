@@ -21,15 +21,16 @@ public class JdbcCalendarDao implements CalendarRepository {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private List<CalendarDTO> calendarList = null;
-	
+	private int result = -1;
 	@Autowired
 	@Qualifier("dataSource")
 	private DataSource dataSource;
 
 	@Override
-	public void insertCalendar(CalendarDTO dto) throws Exception{	
+	public int insertCalendar(CalendarDTO dto) throws Exception{	
 		String sql = "INSERT INTO CALENDAR (CALENDARNO, LOGINID, TITLE, STARTDATE , ENDDATE , CONTENT) "
 						+ "VALUES(CALENDARID.NEXTVAL,?,?,?,?,?)";
+
 		conn = dataSource.getConnection();
 		pstmt = conn.prepareStatement(sql);
 		
@@ -39,14 +40,16 @@ public class JdbcCalendarDao implements CalendarRepository {
 		pstmt.setString(4, dto.getEndDate());
 		pstmt.setString(5, dto.getContent());
 		
-		pstmt.executeUpdate();
+		result = pstmt.executeUpdate();
 		JdbcUtil.close(pstmt, conn);
+		
+		return result;
 	}
 	
 	@Override
-	public void updateCalendar(CalendarDTO dto) throws Exception {
+	public int updateCalendar(CalendarDTO dto) throws Exception {
 		String sql = "UPDATE CALENDAR SET TITLE=?, STARTDATE=?, ENDDATE=?, CONTENT=? WHERE CALENDARNO=?";
-		
+
 		conn = dataSource.getConnection();
 		pstmt = conn.prepareStatement(sql);
 		
@@ -56,12 +59,14 @@ public class JdbcCalendarDao implements CalendarRepository {
 		pstmt.setString(4, dto.getContent());
 		pstmt.setInt(5, dto.getCalendarNo());
 		
-		pstmt.executeUpdate();
+		result = pstmt.executeUpdate();
 		JdbcUtil.close(pstmt, conn);
+		
+		return result;
 	}
 	
 	@Override
-	public void deleteCalender(int calendarNo) throws Exception {
+	public int deleteCalender(int calendarNo) throws Exception {
 		String sql = "DELETE FROM CALENDAR WHERE CALENDARNO=?";
 		
 		conn = dataSource.getConnection();
@@ -69,8 +74,10 @@ public class JdbcCalendarDao implements CalendarRepository {
 		
 		pstmt.setInt(1, calendarNo);
 		
-		pstmt.executeUpdate();
+		result = pstmt.executeUpdate();
 		JdbcUtil.close(pstmt, conn);
+		
+		return result;
 	}
 
 	@Override

@@ -19,25 +19,25 @@ public class TemplateCalendarDao implements CalendarRepository{
 	private JdbcTemplate jdbcTemplate;
 	
 	@Override
-	public void insertCalendar(CalendarDTO dto) throws Exception {
+	public int insertCalendar(CalendarDTO dto) throws Exception {
 		String sql = "INSERT INTO CALENDAR (CALENDARNO, LOGINID, TITLE, STARTDATE , ENDDATE , CONTENT) "
 				+ "VALUES(CALENDARID.NEXTVAL,?,?,?,?,?)";
 		
-		jdbcTemplate.update(sql,dto.getLoginId(),dto.getTitle(),dto.getStartDate(),dto.getEndDate(),dto.getContent());
+		return jdbcTemplate.update(sql,dto.getLoginId(),dto.getTitle(),dto.getStartDate(),dto.getEndDate(),dto.getContent());
 	}
 
 	@Override
-	public void updateCalendar(CalendarDTO dto) throws Exception {
+	public int updateCalendar(CalendarDTO dto) throws Exception {
 		String sql = "UPDATE CALENDAR SET TITLE=?, STARTDATE=?, ENDDATE=?, CONTENT=? WHERE CALENDARNO=?";
 		
-		jdbcTemplate.update(sql,dto.getTitle(),dto.getStartDate(),dto.getEndDate(),dto.getContent(),dto.getCalendarNo());
+		return jdbcTemplate.update(sql,dto.getTitle(),dto.getStartDate(),dto.getEndDate(),dto.getContent(),dto.getCalendarNo());
 	}
 
 	@Override
-	public void deleteCalender(int calendarNo) throws Exception {
+	public int deleteCalender(int calendarNo) throws Exception {
 		String sql = "DELETE FROM CALENDAR WHERE CALENDARNO=?";
 		
-		jdbcTemplate.update(sql, calendarNo);
+		return jdbcTemplate.update(sql, calendarNo);
 	}
 
 	@Override

@@ -14,10 +14,11 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberRepository dao;
+	
 	private MemberDTO mdto;
 	
 	@Override
-	public MemberDTO loginCheck(LoginDTO dto) throws Exception {
+	public MemberDTO loginCheck(LoginDTO dto) {
 		mdto = new MemberDTO();
 		String id = dao.memberCheckById(dto); //로그인 체크
 		
@@ -29,7 +30,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public int createMember(MemberDTO dto) throws Exception{	
+	public int createMember(MemberDTO dto){	
 		return dao.memberInsert(dto);
 	}
 

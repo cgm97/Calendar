@@ -11,8 +11,6 @@
 <title>마이페이지</title>
 </head>
 <body style="text-align: center">
-	<c:if test="${result eq 1}">수정 완료</c:if>
-	<c:if test="${result eq -1}">수정 실패</c:if>
 	<form  id='userInfo' action="<c:url value="/mypage.do"/>" method="POST">
 		<label>아이디    : </label><input type="text" id="loginId" name="loginId" value="${loginedMember.loginId}" readOnly/><br>
 		<label>비밀번호 : </label><input type="password" id="loginPw" name="loginPw" value="${loginedMember.loginPw}"/><br>
@@ -24,7 +22,8 @@
 		<label>가입날짜 : </label>${loginedMember.regDate}<br>
 		<label>최근로그인 : </label>${loginedMember.lastDate}<br>
 		<input type="submit" id="submit" value="계정 수정" />
-		<input type="submit" formaction="<c:url value="/delete" />" value="계정 삭제" /><br>
+		<input type="submit" onclick='return confirm("해당 아이디  ${loginedMember.loginId}를"+" 정말 삭제 하시겠습니까?")'
+				 formaction="<c:url value="/delete" />" value="계정 삭제" /><br>
 		<input type="button" onclick="location.href='<c:url value="/"/>'" value="Home" />
 	</form>
 </body>

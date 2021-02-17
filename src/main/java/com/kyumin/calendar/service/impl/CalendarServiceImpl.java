@@ -22,8 +22,8 @@ public class CalendarServiceImpl implements CalendarService {
 	
 	@Autowired
 	private CalendarRepository dao;
-	private CalendarDTO calendarDTO;
 	
+	private CalendarDTO calendarDTO;	
 	private SimpleDateFormat change = new SimpleDateFormat("yyyy-MM-dd");
 	private Calendar cal = Calendar.getInstance();
 	
@@ -40,20 +40,20 @@ public class CalendarServiceImpl implements CalendarService {
 	// 일정 목록 추가
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
-	public void writeCalendar(CalendarDTO dto) throws Exception{
-		dao.insertCalendar(changeEndDate(dto,1)); // 추가를 위한 +1일
+	public int writeCalendar(CalendarDTO dto) throws Exception{
+		return dao.insertCalendar(changeEndDate(dto,1)); // 추가를 위한 +1일
 	}
 	
 	// 일정 목록 수정
 	@Override
-	public void editCalendar(CalendarDTO dto) throws Exception {
-		dao.updateCalendar(changeEndDate(dto,1)); // 수정을 위한 +1일
+	public int editCalendar(CalendarDTO dto) throws Exception{
+		return dao.updateCalendar(changeEndDate(dto,1)); // 수정을 위한 +1일
 	}
 	
 	// 일정 삭제
 	@Override
-	public void deleteCalender(int calendarNo) throws Exception {
-		dao.deleteCalender(calendarNo);
+	public int deleteCalender(int calendarNo) throws Exception {
+		return dao.deleteCalender(calendarNo);
 	}
 	
 	// 일정 목록 불러오기

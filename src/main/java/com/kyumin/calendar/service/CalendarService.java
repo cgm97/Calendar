@@ -8,10 +8,10 @@ import org.springframework.ui.Model;
 import com.kyumin.calendar.domain.CalendarDTO;
 
 public interface CalendarService {
+	int writeCalendar(CalendarDTO dto) throws Exception;
+	int editCalendar(CalendarDTO ddto) throws Exception;
+	int deleteCalender(int calendarNo) throws Exception;
 	void clickDate(Date selectedDate, Model model);
-	void writeCalendar(CalendarDTO dto) throws Exception;
-	void editCalendar(CalendarDTO ddto) throws Exception;
-	void deleteCalender(int calendarNo) throws Exception;
 	List<CalendarDTO> showCalendar(String getListById) throws Exception;
 	CalendarDTO getListByCalendarNo(int calendarNo) throws Exception;
 }

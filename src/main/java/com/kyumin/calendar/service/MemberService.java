@@ -4,13 +4,9 @@ import com.kyumin.calendar.domain.LoginDTO;
 import com.kyumin.calendar.domain.MemberDTO;
 
 public interface MemberService {
-	MemberDTO loginCheck(LoginDTO dto) throws Exception;
-
-	int createMember(MemberDTO dto) throws Exception;
-
-	int idDuplication(String iD);
-
+	int createMember(MemberDTO dto);
 	int editMember(MemberDTO dto);
-
 	int deleteById(String id);
+	int idDuplication(String iD);
+	MemberDTO loginCheck(LoginDTO dto);
 }

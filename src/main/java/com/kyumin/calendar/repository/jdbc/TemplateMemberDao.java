@@ -23,8 +23,7 @@ public class TemplateMemberDao implements MemberRepository {
 		String sql = "SELECT LOGINID FROM MEMBER WHERE LOGINID=? AND LOGINPW=?";
 		String id = null;
 		try {
-			id = jdbcTemplate.queryForObject(sql, new Object[]{dto.getLoginId(),dto.getLoginPw()}, String.class);
-			
+			id = jdbcTemplate.queryForObject(sql, new Object[]{dto.getLoginId(),dto.getLoginPw()}, String.class);			
 			return id;
 		}catch(Exception e) {
 			return id;
@@ -46,7 +45,7 @@ public class TemplateMemberDao implements MemberRepository {
 	}
 
 	@Override
-	public int updateLastLogin(String loginId) throws Exception{
+	public int updateLastLogin(String loginId){
 		String sql = "UPDATE MEMBER SET LASTLOGIN=SYSDATE WHERE LOGINID=?";
 		int result = -1;
 		try {

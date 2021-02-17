@@ -135,6 +135,7 @@ public class JdbcMemberDao implements MemberRepository {
 			e.printStackTrace();
 		}	
 		JdbcUtil.close(rs, pstmt, conn);
+		
 		return dto;
 	}
 
@@ -157,6 +158,7 @@ public class JdbcMemberDao implements MemberRepository {
 			e.printStackTrace();
 		}	
 		JdbcUtil.close(pstmt, conn);
+		
 		return result;
 	}
 
@@ -176,6 +178,7 @@ public class JdbcMemberDao implements MemberRepository {
 			e.printStackTrace();
 		}		
 		JdbcUtil.close(pstmt, conn);
+		
 		return result;
 	}
 }
