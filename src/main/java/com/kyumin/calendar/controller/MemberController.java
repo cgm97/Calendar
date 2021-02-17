@@ -30,8 +30,8 @@ public class MemberController {
 	
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<Object,Object> login(@RequestBody LoginDTO dto, HttpSession session) throws Exception {
-		Map<Object, Object> map = new HashMap<Object, Object>();
+	public Map<String, Object> login(@RequestBody LoginDTO dto, HttpSession session) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
 		logger.info("로그인 체크");
 		MemberDTO getUserInfo = memberService.loginCheck(dto);
 		
@@ -39,11 +39,13 @@ public class MemberController {
 			logger.info("로그인 성공");
 			session.setAttribute("loginedMember", getUserInfo);
 			session.setAttribute("loginedMemberId", getUserInfo.getLoginId());
-			session.removeAttribute("result");
+			map.put("key","success");
+			map.put("msg", "로그인 성공");
 		}
 		else {
 			logger.info("로그인 실패");
-			session.setAttribute("result","로그인 실패");
+			map.put("key","failed");
+			map.put("msg", "로그인 실패 - ID or PW가 맞지 않습니다.");
 		}
 		return map;
 	}
@@ -60,17 +62,18 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/join.do", method=RequestMethod.POST)
-	public String join(MemberDTO dto, HttpSession session) throws Exception {
+	public String join(MemberDTO dto, Model model) throws Exception {
 		int result = memberService.createMember(dto);
 		
 		if(result > 0) {
-			session.setAttribute("result","회원가입 성공");
+			model.addAttribute("msg","회원가입 성공");
+			model.addAttribute("url","/calendar");
 		}
 		else {
-			session.setAttribute("result","회원가입 실패 - 아이디 중복");
-		}
-		
-		return "redirect:/";
+			model.addAttribute("msg","회원가입 실패 - 아이디 중복");
+			model.addAttribute("url","/calendar/join");
+		}		
+		return "common/alert";
 	}
 	
 	@RequestMapping(value="/mypage", method=RequestMethod.GET)
@@ -83,30 +86,33 @@ public class MemberController {
 		logger.info(dto.toString());
 		int result = memberService.editMember(dto);
 
-		if(result == 1) {
+		if(result > 0) { // 현재 세션에 가지고 있는 정보도 함께 업데이트 
 			session.setAttribute("loginedMember", dto);
+			model.addAttribute("msg","수정 완료");
 		}else {
-			result=-1;
+			model.addAttribute("msg","수정 실패");
 		}
-		model.addAttribute("result", result);
+		model.addAttribute("url","/calendar/mypage");
 		
-		return "mypage";	
+		return "common/alert";	
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
-	public String delete(MemberDTO dto, HttpSession session) {
+	public String delete(MemberDTO dto, HttpSession session, Model model) {
 		logger.info(dto.getLoginId()+" 삭제 시작");
 		int result = memberService.deleteById(dto.getLoginId());
 		
-		if(result == 1) {
-			session.setAttribute("result", dto.getLoginId()+" -> 해당 유저 아이디 삭제 완료");
+		if(result > 0) {
 			session.removeAttribute("loginedMember");
 			session.removeAttribute("loginedMemberId");
+			model.addAttribute("msg","계정 삭제 완료");
+			model.addAttribute("url","/calendar");
 		}
 		else {
-			session.setAttribute("result", "삭제 실패");
-		}
-		return "redirect:/";
+			model.addAttribute("msg","계정 삭제 실패");
+			model.addAttribute("url","/calendar/mypage");
+		}		
+		return "common/alert";
 	}
 	
 	@RequestMapping(value="/duplication", method=RequestMethod.POST)

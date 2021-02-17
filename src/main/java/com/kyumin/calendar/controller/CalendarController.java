@@ -24,7 +24,6 @@ public class CalendarController {
 	
 	@Autowired
 	private CalendarService calendarService;
-	private Map<Object,Object> map = new HashMap<Object,Object>();
 	
 	@GetMapping("/")
 	public String Calendar(Model model, HttpSession session) throws Exception {
@@ -60,27 +59,54 @@ public class CalendarController {
 	// ajax 통신 - 일정 추가
 	@RequestMapping(value="/addCalendar", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<Object,Object> add(@RequestBody CalendarDTO dto, HttpSession session) throws Exception{
+	public Map<String,Object> add(@RequestBody CalendarDTO dto, HttpSession session) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
 		String loginId = (String) session.getAttribute("loginedMemberId");
-		dto.setLoginId(loginId);
+		dto.setLoginId(loginId);	
 		
-		calendarService.writeCalendar(dto);
+		int result = calendarService.writeCalendar(dto);
+		
+		if(result > 0) {
+			map.put("key","success");
+			map.put("msg","일정 추가 성공");
+		}else {
+			map.put("key","failed");
+			map.put("msg","일정 추가 실패");
+		}
 		return map;
 	}
 	
 	// ajax 통신 - 일정 수정
 	@RequestMapping(value="/editCalendar", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<Object,Object> edit(@RequestBody CalendarDTO dto) throws Exception{
-		calendarService.editCalendar(dto);
-
+	public Map<String,Object> edit(@RequestBody CalendarDTO dto) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		int result = calendarService.editCalendar(dto);
+		
+		if(result > 0) {
+			map.put("key","success");
+			map.put("msg","일정 수정 성공");
+		}else {
+			map.put("key","failed");
+			map.put("msg","일정 수정 실패");
+		}	
 		return map;
 	}
 	
 	// ajax 통신 - 일정 삭제
 	@RequestMapping(value="/deleteCalendar", method=RequestMethod.POST)
 	@ResponseBody
-	public void delete(@RequestBody int calendarNo) throws Exception{
-		calendarService.deleteCalender(calendarNo);
+	public Map<String,Object> delete(@RequestBody int calendarNo) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		int result = calendarService.deleteCalender(calendarNo);
+		
+		if(result > 0) {
+			map.put("key","success");
+			map.put("msg","일정 삭제 성공");
+		}else {
+			map.put("key","failed");
+			map.put("msg","일정 삭제 실패");
+		}
+		return map;
 	}
 }

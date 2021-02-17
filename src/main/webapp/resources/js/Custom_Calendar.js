@@ -66,11 +66,18 @@ function send_save(){ // ajax 비동기 처리 - 일정 추가
 			type : "POST",
 			dataType : "json",
 			contentType : "application/json; charset=UTF-8",
-			success:function(data){
-				opener.parent.location.reload();
-				alert("일정 추가 성공");
-				window.close();
+			success:function(response){
+				if(response.key == "success"){
+					alert(response.msg);
+					opener.parent.location.reload();
+					window.close();
+				}else{
+					alert(response.msg);				
+				}
 			},
+			error:function(error){
+				alert(error.message);
+			}
 		});		
 	}
 };
@@ -85,27 +92,44 @@ function update(){ // ajax 비동기 처리 - 일정 수정
 			type : "POST",
 			dataType : "json",
 			contentType : "application/json; charset=UTF-8",
-			success:function(data){
-				opener.parent.location.reload();
-				alert("일정 수정 성공");
-				window.close();
+			success:function(response){
+				if(response.key == "success"){
+					alert(response.msg);
+					opener.parent.location.reload();
+					window.close();
+				}else{
+					alert(response.msg);				
+				}
 			},
+			error:function(error){
+				alert(error.message);
+			}
 		});
 	}
 };
 
 function btnDelete(){ // ajax 비동기 처리 - 일정 삭제
 	var data = $("#calendarNo").val(); // 일정번호
+	var result = confirm("해당 일정을 정말 삭제 하시겠습니까?");
 	console.log(data);
-	$.ajax({
-		data : data,
-		url : "/calendar/deleteCalendar",
-		type : "POST",
-		contentType : "application/json; charset=UTF-8",
-		success:function(data){
-			opener.parent.location.reload();
-			alert("일정 삭제 성공");
-			window.close();
-		},
-	});
+	if(result){
+		$.ajax({
+			data : data,
+			url : "/calendar/deleteCalendar",
+			type : "POST",
+			contentType : "application/json; charset=UTF-8",
+			success:function(response){
+				if(response.key == "success"){
+					alert(response.msg);
+					opener.parent.location.reload();
+					window.close();
+				}else{
+					alert(response.msg);				
+				}
+			},
+			error:function(error){
+				alert(error.message);
+			}
+		});
+	}
 };

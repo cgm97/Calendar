@@ -44,10 +44,18 @@ function login(){ // ajax 비동기 처리 - 로그인 처리
 		type : "POST",
 		dataType : "json",
 		contentType : "application/json; charset=UTF-8",
-		success:function(data){
-			opener.parent.location.reload();
-			window.close();
+		success:function(response){
+			if(response.key == "success"){
+				alert(response.msg);
+				opener.parent.location.reload();
+				window.close();
+			}else{
+				alert(response.msg);				
+			}
 		},
+		error:function(error){
+			alert(error.message);
+		}
 	});
 };
 
