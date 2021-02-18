@@ -38,7 +38,6 @@ public class MemberController {
 		if(getUserInfo.getName() != null) {
 			logger.info("로그인 성공");
 			session.setAttribute("loginedMember", getUserInfo);
-			session.setAttribute("loginedMemberId", getUserInfo.getLoginId());
 			map.put("key","success");
 			map.put("msg", "로그인 성공");
 		}

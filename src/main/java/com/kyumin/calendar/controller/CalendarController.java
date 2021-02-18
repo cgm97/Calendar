@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.kyumin.calendar.domain.CalendarDTO;
+import com.kyumin.calendar.domain.MemberDTO;
 import com.kyumin.calendar.service.CalendarService;
 
 @Controller
@@ -27,8 +28,11 @@ public class CalendarController {
 	
 	@GetMapping("/")
 	public String Calendar(Model model, HttpSession session) throws Exception {
-		
-		String getCalendarById = (String) session.getAttribute("loginedMemberId");
+		MemberDTO memberInfo = (MemberDTO) session.getAttribute("loginedMember");
+		String getCalendarById = "";
+		if(memberInfo != null) { // 처음 실행시 session 값이 없어 null point 오류 발생
+			getCalendarById = memberInfo.getLoginId();		
+		}		
 		// 나의 일정 가져오기
 		model.addAttribute("getList",calendarService.showCalendar(getCalendarById));
 

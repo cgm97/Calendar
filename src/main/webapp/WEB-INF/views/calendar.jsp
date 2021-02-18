@@ -68,7 +68,6 @@
 	<body>
 		<h2 style="text-align:center;">My Calendar</h2>
 		<h2 style="text-align:center;">${loginedMember.name}</h2>
-		<h2 style="text-align:center;">${result}</h2>
 	  <div id='calendar' style="position: relative;" >
 	  	<c:if test="${loginedMember ne null}"><button class="login-btn" type="button" onclick="location.href='logout'">로그아웃</button></c:if>
 	  	<c:if test="${loginedMember ne null}"><button class="mypage-btn" type="button" onclick="location.href='mypage'">마이페이지</button></c:if>
