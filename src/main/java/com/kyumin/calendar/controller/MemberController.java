@@ -103,7 +103,6 @@ public class MemberController {
 		
 		if(result > 0) {
 			session.removeAttribute("loginedMember");
-			session.removeAttribute("loginedMemberId");
 			model.addAttribute("msg","계정 삭제 완료");
 			model.addAttribute("url","/calendar");
 		}
