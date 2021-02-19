@@ -65,7 +65,8 @@ public class CalendarController {
 	@ResponseBody
 	public Map<String,Object> add(@RequestBody CalendarDTO dto, HttpSession session) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
-		String loginId = (String) session.getAttribute("loginedMemberId");
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("loginedMember");
+		String loginId = memberDTO.getLoginId();
 		dto.setLoginId(loginId);	
 		
 		int result = calendarService.writeCalendar(dto);

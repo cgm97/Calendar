@@ -49,6 +49,11 @@ function login(){ // ajax 비동기 처리 - 로그인 처리
 				alert(response.msg);
 				opener.parent.location.reload();
 				window.close();
+//				if(response.url == "not"){
+//					window.close();
+//				}else{
+//					document.location.href = response.url;
+//				}
 			}else{
 				alert(response.msg);				
 			}

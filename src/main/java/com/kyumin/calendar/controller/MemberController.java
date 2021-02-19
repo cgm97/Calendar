@@ -40,6 +40,11 @@ public class MemberController {
 			session.setAttribute("loginedMember", getUserInfo);
 			map.put("key","success");
 			map.put("msg", "로그인 성공");
+//			if(session.getAttribute("savePage") != null) {
+//				map.put("url", session.getAttribute("savePage"));
+//			}else {
+//				map.put("url", "not");
+//			}
 		}
 		else {
 			logger.info("로그인 실패");
