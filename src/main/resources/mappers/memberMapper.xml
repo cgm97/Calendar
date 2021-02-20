@@ -3,5 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberMapper">
-   
+   <!-- 로그인 인증 -->
+   <select id="checkLogin" parameterType="com.kyumin.calendar.domain.LoginDTO" resultType="String">
+  	 SELECT LOGINID 
+  	 	FROM MEMBER 
+  	 WHERE LOGINID=#{LOGINID} AND LOGINPW=#{LOGINPW}
+   </select>
 </mapper>
