@@ -3,10 +3,27 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberMapper">
+   <!-- 회원가입 -->
+   <insert id="memberInsert" parameterType="com.kyumin.calendar.domain.MemberDTO">
+   		INSERT INTO MEMBER (MEMBERNO, LOGINID, LOGINPW ,NAME ,EMAIL ,REGDATE, LASTLOGIN)
+			VALUES(MEMBERNO.NEXTVAL, #{loginId}, #{loginPw}, #{name}, #{email},SYSDATE,SYSDATE)
+   </insert>
    <!-- 로그인 인증 -->
    <select id="checkLogin" parameterType="com.kyumin.calendar.domain.LoginDTO" resultType="String">
-  	 SELECT LOGINID 
-  	 	FROM MEMBER 
-  	 WHERE LOGINID=#{LOGINID} AND LOGINPW=#{LOGINPW}
+	  	 SELECT LOGINID 
+	  	 	FROM MEMBER 
+	  	 WHERE LOGINID=#{loginId} AND LOGINPW=#{loginPw}
    </select>
+   <!-- 회원 정보  -->
+   <select	id="getMemberById" parameterType="String" resultType="com.kyumin.calendar.domain.MemberDTO">
+  		 SELECT * FROM MEMBER WHERE LOGINID=#{loginId}
+   </select>
+   <!-- 회원정보 수정 -->
+   <update id="memberUpdate" parameterType="com.kyumin.calendar.domain.MemberDTO">
+   		UPDATE MEMBER SET LOGINPW=#{loginPw}, NAME=#{name}, EMAIL=#{email} WHERE LOGINID=#{loginId}
+   </update>
+   <!-- 회원정보 삭제 -->
+   <delete id="deleteById" parameterType="String">
+   		DELETE FROM MEMBER WHERE LOGINID=#{loginId}
+   </delete>
 </mapper>
