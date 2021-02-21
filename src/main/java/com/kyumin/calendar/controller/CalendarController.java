@@ -53,7 +53,7 @@ public class CalendarController {
 		return "addCalendar";
 	}
 	
-	// 일정 수정
+	// 일정 수정 페이지 - 선택된 값 가져오기
 	@RequestMapping(value="/calendarUpdate", method=RequestMethod.GET)
 	public String calendarUpdate( @RequestParam("no") int calendarNo, Model model) throws Exception{
 		model.addAttribute("getListByNo",calendarService.getListByCalendarNo(calendarNo));

@@ -129,7 +129,7 @@ public class JdbcMemberDao implements MemberRepository {
 				dto.setName(rs.getString("NAME"));
 				dto.setEmail(rs.getString("EMAIL"));
 				dto.setRegDate(rs.getDate("REGDATE"));
-				dto.setLastDate(rs.getDate("LASTLOGIN"));
+				dto.setLastLogin(rs.getDate("LASTLOGIN"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

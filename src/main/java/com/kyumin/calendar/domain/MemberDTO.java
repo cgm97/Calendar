@@ -8,7 +8,7 @@ public class MemberDTO {
 	private String name;
 	private String email;
 	private Date regDate;
-	private Date lastDate;
+	private Date lastLogin;
 	
 	public String getLoginId() {
 		return loginId;
@@ -40,16 +40,16 @@ public class MemberDTO {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	public Date getLastDate() {
-		return lastDate;
+	public Date getLastLogin() {
+		return lastLogin;
 	}
-	public void setLastDate(Date lastDate) {
-		this.lastDate = lastDate;
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
 	}
 
 	@Override
 	public String toString() {
 		return "MemberDTO [loginId=" + loginId + ", loginPw=" + loginPw + ", name=" + name + ", email=" + email
-				+ ", regDate=" + regDate + ", lastDate=" + lastDate + "]";
+				+ ", regDate=" + regDate + ", LastLogin=" + lastLogin + "]";
 	}	
 }

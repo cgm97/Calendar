@@ -16,7 +16,7 @@ public class MemberRowMapper implements RowMapper<MemberDTO> {
 		dto.setName(rs.getString("NAME"));
 		dto.setEmail(rs.getString("EMAIL"));
 		dto.setRegDate(rs.getDate("REGDATE"));
-		dto.setLastDate(rs.getDate("LASTLOGIN"));
+		dto.setLastLogin(rs.getDate("LASTLOGIN"));
 		
 		return dto;
 	}
