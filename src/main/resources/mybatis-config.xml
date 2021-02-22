@@ -4,5 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   
 <configuration>
-	
+	<typeAliases>
+		<typeAlias alias="memberDTO" type="com.kyumin.calendar.domain.MemberDTO"/>
+		<typeAlias alias="loginDTO" type="com.kyumin.calendar.domain.LoginDTO"/>
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="mappers/memberMapper.xml"/>
+	</mappers>
 </configuration>

@@ -12,7 +12,7 @@ import com.kyumin.calendar.repository.MemberRepository;
 import com.kyumin.calendar.repository.jdbc.mapper.MemberRowMapper;
 
 @Repository
-@Primary
+//@Primary
 public class TemplateMemberDao implements MemberRepository {
 
 	@Autowired
