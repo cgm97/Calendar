@@ -1,14 +1,12 @@
 package com.kyumin.calendar.domain;
 
-import java.util.Date;
-
 public class MemberDTO {
 	private String loginId;
 	private String loginPw;
 	private String name;
 	private String email;
-	private Date regDate;
-	private Date lastLogin;
+	private String regDate;
+	private String lastLogin;
 	
 	public String getLoginId() {
 		return loginId;
@@ -34,16 +32,16 @@ public class MemberDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getRegDate() {
+	public String getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(Date regDate) {
+	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	public Date getLastLogin() {
+	public String getLastLogin() {
 		return lastLogin;
 	}
-	public void setLastLogin(Date lastLogin) {
+	public void setLastLogin(String lastLogin) {
 		this.lastLogin = lastLogin;
 	}
 
