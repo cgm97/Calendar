@@ -7,9 +7,11 @@
 	<typeAliases>
 		<typeAlias alias="memberDTO" type="com.kyumin.calendar.domain.MemberDTO"/>
 		<typeAlias alias="loginDTO" type="com.kyumin.calendar.domain.LoginDTO"/>
+		<typeAlias alias="calendarDTO" type="com.kyumin.calendar.domain.CalendarDTO"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mappers/memberMapper.xml"/>
+		<mapper resource="mappers/calendarMapper.xml"/>
 	</mappers>
 </configuration>
