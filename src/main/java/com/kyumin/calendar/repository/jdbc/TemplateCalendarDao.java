@@ -3,16 +3,14 @@ package com.kyumin.calendar.repository.jdbc;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import com.kyumin.calendar.domain.CalendarDTO;
 import com.kyumin.calendar.repository.CalendarRepository;
 import com.kyumin.calendar.repository.jdbc.mapper.CalendarRowMapper;
 
 @Repository
-@Primary
+//@Primary
 public class TemplateCalendarDao implements CalendarRepository{
 
 	@Autowired

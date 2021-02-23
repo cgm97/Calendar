@@ -1,11 +1,9 @@
 package com.kyumin.calendar.repository.jdbc;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import com.kyumin.calendar.domain.LoginDTO;
 import com.kyumin.calendar.domain.MemberDTO;
 import com.kyumin.calendar.repository.MemberRepository;
@@ -58,7 +56,7 @@ public class TemplateMemberDao implements MemberRepository {
 
 	@Override
 	public int idDupCheck(String iD) {
-		String sql = "SELECT LOGINID FROM MEMBER WHERE LOGINID=?";
+		String sql = "SELECT COUNT(LOGINID) FROM MEMBER WHERE LOGINID=?";
 		
 		return jdbcTemplate.update(sql, iD);
 	}

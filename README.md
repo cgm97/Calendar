@@ -29,7 +29,7 @@
 ##### 사용 된 데이터베이스 - DB
 - [x] JDBC
 - [x] JDBCTemplate
-- [ ] Mybatis
+- [x] Mybatis
 - [ ] JPA
 
 

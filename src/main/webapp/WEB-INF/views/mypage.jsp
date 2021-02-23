@@ -20,7 +20,7 @@
 		<label>이름       : </label><input type="text" id="name" name="name" value="${loginedMember.name}" /><br>
 		<label>이메일    : </label><input type="text" id="email" name="email" value="${loginedMember.email}" /><br><br>
 		<label>가입날짜 : </label>${loginedMember.regDate}<br>
-		<label>최근로그인 : </label>${loginedMember.lastDate}<br>
+		<label>최근로그인 : </label>${loginedMember.lastLogin}<br>
 		<input type="submit" id="submit" value="계정 수정" />
 		<input type="submit" onclick='return confirm("해당 아이디  ${loginedMember.loginId}를"+" 정말 삭제 하시겠습니까?")'
 				 formaction="<c:url value="/delete" />" value="계정 삭제" /><br>
