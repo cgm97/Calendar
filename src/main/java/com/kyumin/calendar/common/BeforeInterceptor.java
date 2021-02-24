@@ -15,7 +15,7 @@ public class BeforeInterceptor extends HandlerInterceptorAdapter{
 //	private void savePage(HttpServletRequest request, HttpSession session) {
 //		String uri = request.getRequestURI();
 //		String query = request.getQueryString();
-//		if(query == null || query.equals("null")){
+//		if (query == null || query.equals("null")){
 //			query="";
 //		}else {
 //			query = "?" + query;
@@ -29,10 +29,12 @@ public class BeforeInterceptor extends HandlerInterceptorAdapter{
         HttpSession session = request.getSession();
         logger.info("현재 접속 중인 ID 확인 : "+session.getAttribute("loginedMember"));
         
-        if(session.getAttribute("loginedMember") == null) {
-//        	session.setAttribute("infomation", "로그인 후 사용 가능합니다.");
-//        	response.sendRedirect(request.getContextPath() + "/login");
-//        	savePage(request, session);
+        if (session.getAttribute("loginedMember") == null) {
+			/*
+			 * session.setAttribute("infomation", "로그인 후 사용 가능합니다.");
+			 * response.sendRedirect(request.getContextPath() + "/login"); savePage(request,
+			 * session);
+			 */
         	RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
         	request.setAttribute("infomation", "로그인 후 사용 가능합니다.");
         	dispatcher.forward(request, response);

@@ -36,3 +36,7 @@
 
 #### DB Model
 ![DbModel](https://user-images.githubusercontent.com/65147348/106873828-37531580-6718-11eb-9367-e13f52cebe40.png)
+
+#### CalendarService 흐름도
+![화면흐름도](https://user-images.githubusercontent.com/65147348/108941319-39b1eb00-7698-11eb-91da-c6851667dfc0.png)
+![모듈흐름도](https://user-images.githubusercontent.com/65147348/108941337-446c8000-7698-11eb-96ff-48cdd5f31fd2.png)

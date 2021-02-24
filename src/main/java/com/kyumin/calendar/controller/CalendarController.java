@@ -30,7 +30,7 @@ public class CalendarController {
 	public String Calendar(Model model, HttpSession session) throws Exception {
 		MemberDTO memberInfo = (MemberDTO) session.getAttribute("loginedMember");
 		String getCalendarById = "";
-		if(memberInfo != null) { // 처음 실행시 session 값이 없어 null point 오류 발생
+		if (memberInfo != null) { // 처음 실행시 session 값이 없어 null point 오류 발생
 			getCalendarById = memberInfo.getLoginId();		
 		}		
 		// 나의 일정 가져오기
@@ -71,7 +71,7 @@ public class CalendarController {
 		
 		int result = calendarService.writeCalendar(dto);
 		
-		if(result > 0) {
+		if (result > 0) {
 			map.put("key","success");
 			map.put("msg","일정 추가 성공");
 		}else {
@@ -88,7 +88,7 @@ public class CalendarController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int result = calendarService.editCalendar(dto);
 		
-		if(result > 0) {
+		if (result > 0) {
 			map.put("key","success");
 			map.put("msg","일정 수정 성공");
 		}else {
@@ -105,7 +105,7 @@ public class CalendarController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int result = calendarService.deleteCalender(calendarNo);
 		
-		if(result > 0) {
+		if (result > 0) {
 			map.put("key","success");
 			map.put("msg","일정 삭제 성공");
 		}else {

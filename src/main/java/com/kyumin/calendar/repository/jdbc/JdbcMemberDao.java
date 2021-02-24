@@ -92,14 +92,14 @@ public class JdbcMemberDao implements MemberRepository {
 	}
 
 	@Override
-	public int idDupCheck(String iD) {
+	public int idDupCheck(String id) {
 		int result = 0; // 존재 x
 		String sql = "SELECT LOGINID FROM MEMBER WHERE LOGINID=?";
 		
 		try {
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(sql);		
-			pstmt.setString(1, iD);			
+			pstmt.setString(1, id);			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

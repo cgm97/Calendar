@@ -55,10 +55,10 @@ public class TemplateMemberDao implements MemberRepository {
 	}
 
 	@Override
-	public int idDupCheck(String iD) {
+	public int idDupCheck(String id) {
 		String sql = "SELECT COUNT(LOGINID) FROM MEMBER WHERE LOGINID=?";
 		
-		return jdbcTemplate.update(sql, iD);
+		return jdbcTemplate.update(sql, id);
 	}
 
 	@Override

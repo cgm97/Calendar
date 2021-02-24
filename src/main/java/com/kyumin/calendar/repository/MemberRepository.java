@@ -8,7 +8,7 @@ public interface MemberRepository {
 	int memberUpdate(MemberDTO dto);
 	int updateLastLogin(String loginId);
 	int deleteById(String id);
-	int idDupCheck(String iD);
+	int idDupCheck(String id);
 	String memberCheckById(LoginDTO dto);
 	MemberDTO getMemberById(String id);
 }

@@ -15,14 +15,12 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberRepository dao;
 	
-	private MemberDTO mdto;
-	
 	@Override
 	public MemberDTO loginCheck(LoginDTO dto) {
-		mdto = new MemberDTO();
+		MemberDTO mdto = new MemberDTO();
 		String id = dao.memberCheckById(dto); //로그인 체크
 		
-		if(id != null) {
+		if (id != null) {
 			dao.updateLastLogin(dto.getLoginId()); // 로그인기록
 			mdto = dao.getMemberById(id); // 해당 멤버 정보 가져오기			
 		}
@@ -35,20 +33,17 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int idDuplication(String iD) {
-		// TODO Auto-generated method stub
-		return dao.idDupCheck(iD);
+	public int idDuplication(String id) {
+		return dao.idDupCheck(id);
 	}
 
 	@Override
 	public int editMember(MemberDTO dto) {
-		// TODO Auto-generated method stub
 		return dao.memberUpdate(dto);
 	}
 
 	@Override
 	public int deleteById(String id) {
-		// TODO Auto-generated method stub
 		return dao.deleteById(id);
 	}
 	

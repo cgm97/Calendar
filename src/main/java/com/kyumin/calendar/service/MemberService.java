@@ -7,6 +7,6 @@ public interface MemberService {
 	int createMember(MemberDTO dto);
 	int editMember(MemberDTO dto);
 	int deleteById(String id);
-	int idDuplication(String iD);
+	int idDuplication(String id);
 	MemberDTO loginCheck(LoginDTO dto);
 }

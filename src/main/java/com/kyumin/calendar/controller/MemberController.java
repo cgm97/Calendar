@@ -35,16 +35,15 @@ public class MemberController {
 		logger.info("로그인 체크");
 		MemberDTO getUserInfo = memberService.loginCheck(dto);
 		
-		if(getUserInfo.getName() != null) {
+		if (getUserInfo.getName() != null) {
 			logger.info("로그인 성공");
 			session.setAttribute("loginedMember", getUserInfo);
 			map.put("key","success");
 			map.put("msg", "로그인 성공");
-//			if(session.getAttribute("savePage") != null) {
-//				map.put("url", session.getAttribute("savePage"));
-//			}else {
-//				map.put("url", "not");
-//			}
+			/*
+			 * if(session.getAttribute("savePage") != null) { map.put("url",
+			 * session.getAttribute("savePage")); }else { map.put("url", "not"); }
+			 */
 		}
 		else {
 			logger.info("로그인 실패");
@@ -69,7 +68,7 @@ public class MemberController {
 	public String join(MemberDTO dto, Model model) throws Exception {
 		int result = memberService.createMember(dto);
 		
-		if(result > 0) {
+		if (result > 0) {
 			model.addAttribute("msg","회원가입 성공");
 			model.addAttribute("url","/calendar");
 		}
@@ -90,7 +89,7 @@ public class MemberController {
 		logger.info(dto.toString());
 		int result = memberService.editMember(dto);
 
-		if(result > 0) { // 현재 세션에 가지고 있는 정보도 함께 업데이트 
+		if (result > 0) { // 현재 세션에 가지고 있는 정보도 함께 업데이트 
 			session.setAttribute("loginedMember", dto);
 			model.addAttribute("msg","수정 완료");
 		}else {
@@ -106,7 +105,7 @@ public class MemberController {
 		logger.info(dto.getLoginId()+" 삭제 시작");
 		int result = memberService.deleteById(dto.getLoginId());
 		
-		if(result > 0) {
+		if (result > 0) {
 			session.removeAttribute("loginedMember");
 			model.addAttribute("msg","계정 삭제 완료");
 			model.addAttribute("url","/calendar");
@@ -121,10 +120,10 @@ public class MemberController {
 	@RequestMapping(value="/duplication", method=RequestMethod.POST)
 	@ResponseBody
 	public String dulpliCheck(@RequestBody String check_id) {
-		String ID = check_id.trim();
-		int id_dupCheck = memberService.idDuplication(ID);
+		String id = check_id.trim();
+		int id_dupCheck = memberService.idDuplication(id);
 		
-		if(id_dupCheck == 0) {
+		if (id_dupCheck == 0) {
 			return "success";	// 사용 가능		
 		}else {
 			return "failed";	

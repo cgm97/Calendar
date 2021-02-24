@@ -9,7 +9,7 @@ import com.kyumin.calendar.domain.CalendarDTO;
 
 public interface CalendarService {
 	int writeCalendar(CalendarDTO dto) throws Exception;
-	int editCalendar(CalendarDTO ddto) throws Exception;
+	int editCalendar(CalendarDTO dto) throws Exception;
 	int deleteCalender(int calendarNo) throws Exception;
 	void clickDate(Date selectedDate, Model model);
 	List<CalendarDTO> showCalendar(String getListById) throws Exception;

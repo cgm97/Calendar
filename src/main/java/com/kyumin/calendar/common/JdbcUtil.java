@@ -7,18 +7,14 @@ import java.sql.SQLException;
 
 public class JdbcUtil {
 	
-//	public static Connection getConnection() {
-//		Connection conn = null;
-//		
-//		try {
-//			Class.forName("oracle.jdbc.driver.OracleDriver");
-//			conn = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/xe", "", "");
-//		} catch (SQLException | ClassNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return conn;
-//	}
+	/* -> DateSource 로 대체
+	 * public static Connection getConnection() { Connection conn = null;
+	 * 
+	 * try { Class.forName("oracle.jdbc.driver.OracleDriver"); conn =
+	 * DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/xe", "", "");
+	 * } catch (SQLException | ClassNotFoundException e) { // TODO Auto-generated
+	 * catch block e.printStackTrace(); } return conn; }
+	 */
 	
 	public static void close(PreparedStatement stmt, Connection conn) {
 		if (stmt != null) {
