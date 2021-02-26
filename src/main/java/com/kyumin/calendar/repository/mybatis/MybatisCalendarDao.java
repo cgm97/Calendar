@@ -16,31 +16,31 @@ public class MybatisCalendarDao implements CalendarRepository {
 
 	@Autowired
 	private SqlSession sqlSession;
-	private static final String namespace = "calendarMapper.";
+	private static final String NAMESPACE = "calendarMapper.";
 	
 	@Override
 	public int insertCalendar(CalendarDTO dto) throws Exception {
-		return sqlSession.insert(namespace+"insertCalendar", dto);
+		return sqlSession.insert(NAMESPACE+"insertCalendar", dto);
 	}
 
 	@Override
 	public int updateCalendar(CalendarDTO dto) throws Exception {
-		return sqlSession.update(namespace+"updateCalendar", dto);
+		return sqlSession.update(NAMESPACE+"updateCalendar", dto);
 	}
 
 	@Override
 	public int deleteCalender(int calendarNo) throws Exception {
-		return sqlSession.delete(namespace+"deleteCalendar", calendarNo);
+		return sqlSession.delete(NAMESPACE+"deleteCalendar", calendarNo);
 	}
 
 	@Override
-	public List<CalendarDTO> getCalendar(String getListById) throws Exception {
-		return sqlSession.selectList(namespace+"getCalendar", getListById);
+	public List<CalendarDTO> getCalendarListById(String id) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getCalendarList", id);
 	}
 
 	@Override
-	public CalendarDTO getCalendarByCalendarNo(int calendarNo) throws Exception {
-		return sqlSession.selectOne(namespace+"getCalendarByCalendarNo", calendarNo);
+	public CalendarDTO getCalendarInfoByCalendarNo(int calendarNo) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getCalendarInfoByCalendarNo", calendarNo);
 	}
 
 }

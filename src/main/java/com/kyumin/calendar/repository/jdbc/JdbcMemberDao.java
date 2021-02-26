@@ -92,7 +92,7 @@ public class JdbcMemberDao implements MemberRepository {
 	}
 
 	@Override
-	public int idDupCheck(String id) {
+	public int duplicateId(String id) {
 		int result = 0; // 존재 x
 		String sql = "SELECT LOGINID FROM MEMBER WHERE LOGINID=?";
 		

@@ -44,7 +44,7 @@
       // 달력 일정 목록 
       ,events: [
     	  // 나의 일정 목록
-    	  <c:forEach var="showList" items="${getList}">
+    	  <c:forEach var="showList" items="${getCalendarList}">
     	  {
     		  id 	: '${showList.getCalendarNo()}',
     		  title : '${showList.getTitle()}',

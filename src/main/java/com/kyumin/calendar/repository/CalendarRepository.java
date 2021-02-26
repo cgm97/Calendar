@@ -7,6 +7,6 @@ public interface CalendarRepository {
 	int insertCalendar(CalendarDTO dto) throws Exception;
 	int updateCalendar(CalendarDTO dto) throws Exception;
 	int deleteCalender(int calendarNo) throws Exception;
-	List<CalendarDTO> getCalendar(String getListById) throws Exception;
-	CalendarDTO getCalendarByCalendarNo(int calendarNo) throws Exception;
+	List<CalendarDTO> getCalendarListById(String id) throws Exception;
+	CalendarDTO getCalendarInfoByCalendarNo(int calendarNo) throws Exception;
 }

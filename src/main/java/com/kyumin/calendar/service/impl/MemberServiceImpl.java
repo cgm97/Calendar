@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int idDuplication(String id) {
-		return dao.idDupCheck(id);
+		return dao.duplicateId(id);
 	}
 
 	@Override

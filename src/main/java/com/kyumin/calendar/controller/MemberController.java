@@ -119,14 +119,13 @@ public class MemberController {
 	
 	@RequestMapping(value="/duplication", method=RequestMethod.POST)
 	@ResponseBody
-	public String dulpliCheck(@RequestBody String check_id) {
-		String id = check_id.trim();
-		int id_dupCheck = memberService.idDuplication(id);
+	public String dulpliCheck(@RequestBody String id) {
+		String needCheckId = id.trim();
+		int duplicateId = memberService.idDuplication(needCheckId);
 		
-		if (id_dupCheck == 0) {
-			return "success";	// 사용 가능		
-		}else {
-			return "failed";	
-		}
+		/*
+		 * if (id_dupCheck == 0) { return "success"; // 사용 가능 }else { return "failed"; }
+		 */
+		return duplicateId == 0 ? "success" : "failed";
 	}
 }

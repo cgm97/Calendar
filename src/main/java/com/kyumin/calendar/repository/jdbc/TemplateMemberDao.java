@@ -55,7 +55,7 @@ public class TemplateMemberDao implements MemberRepository {
 	}
 
 	@Override
-	public int idDupCheck(String id) {
+	public int duplicateId(String id) {
 		String sql = "SELECT COUNT(LOGINID) FROM MEMBER WHERE LOGINID=?";
 		
 		return jdbcTemplate.update(sql, id);

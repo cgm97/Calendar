@@ -24,7 +24,7 @@
    </select>
    
    <!-- 아이디 중복 검사  -->
-   <select id="idDupCheck" parameterType="String" resultType="int">
+   <select id="duplicateId" parameterType="String" resultType="int">
   		 SELECT COUNT(LOGINID)
   		 	FROM MEMBER 
   		 WHERE LOGINID=#{loginId}

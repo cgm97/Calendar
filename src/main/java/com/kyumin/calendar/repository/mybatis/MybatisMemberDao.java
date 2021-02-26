@@ -38,8 +38,8 @@ public class MybatisMemberDao implements MemberRepository {
 	}
 
 	@Override
-	public int idDupCheck(String iD) {
-		return sqlSession.selectOne(namespace+"idDupCheck", iD);
+	public int duplicateId(String iD) {
+		return sqlSession.selectOne(namespace+"duplicateId", iD);
 	}
 
 	@Override

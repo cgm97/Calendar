@@ -39,14 +39,14 @@ public class TemplateCalendarDao implements CalendarRepository{
 	}
 
 	@Override
-	public List<CalendarDTO> getCalendar(String getListById) throws Exception {
+	public List<CalendarDTO> getCalendarListById(String id) throws Exception {
 		String sql = "select * from CALENDAR WHERE LOGINID=?";
 		
-		return jdbcTemplate.query(sql, new CalendarRowMapper(), getListById);
+		return jdbcTemplate.query(sql, new CalendarRowMapper(), id);
 	}
 
 	@Override
-	public CalendarDTO getCalendarByCalendarNo(int calendarNo) throws Exception {
+	public CalendarDTO getCalendarInfoByCalendarNo(int calendarNo) throws Exception {
 		String sql = "select * from CALENDAR WHERE CALENDARNO=?";
 		
 		return jdbcTemplate.queryForObject(sql, new CalendarRowMapper(), calendarNo);

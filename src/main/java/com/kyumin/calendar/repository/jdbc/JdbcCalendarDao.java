@@ -81,12 +81,12 @@ public class JdbcCalendarDao implements CalendarRepository {
 	}
 
 	@Override
-	public List<CalendarDTO> getCalendar(String getListById) throws Exception {
+	public List<CalendarDTO> getCalendarListById(String id) throws Exception {
 		String sql = "select * from CALENDAR WHERE LOGINID=?";
 		conn = dataSource.getConnection();
 		
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, getListById);
+		pstmt.setString(1, id);
 		rs = pstmt.executeQuery();
 		
 		calendarList = new ArrayList<CalendarDTO>();
@@ -107,7 +107,7 @@ public class JdbcCalendarDao implements CalendarRepository {
 	}
 	
 	@Override
-	public CalendarDTO getCalendarByCalendarNo(int calendarNo) throws Exception {
+	public CalendarDTO getCalendarInfoByCalendarNo(int calendarNo) throws Exception {
 		String sql = "select * from CALENDAR WHERE CALENDARNO=?";
 		conn = dataSource.getConnection();
 		pstmt = conn.prepareStatement(sql);

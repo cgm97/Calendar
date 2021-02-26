@@ -1,11 +1,9 @@
 package com.kyumin.calendar.controller;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -27,21 +25,19 @@ public class CalendarController {
 	private CalendarService calendarService;
 	
 	@GetMapping("/")
-	public String Calendar(Model model, HttpSession session) throws Exception {
-		MemberDTO memberInfo = (MemberDTO) session.getAttribute("loginedMember");
-		String getCalendarById = "";
-		if (memberInfo != null) { // 처음 실행시 session 값이 없어 null point 오류 발생
-			getCalendarById = memberInfo.getLoginId();		
-		}		
+	public String indexPage(Model model, HttpSession session) throws Exception {
+		MemberDTO loginedMemberInfo = (MemberDTO) session.getAttribute("loginedMember");
+		// 처음 실행시 session 값이 없어 null point 오류 발생 logined_Id
+		String logined_Id = loginedMemberInfo == null ? "" : loginedMemberInfo.getLoginId();
 		// 나의 일정 가져오기
-		model.addAttribute("getList",calendarService.showCalendar(getCalendarById));
+		model.addAttribute("getCalendarList",calendarService.showCalendar(logined_Id));
 
 		return "calendar";
 	}
 
 	// 클릭된 날짜에 대한 일정 추가 팝업
 	@RequestMapping(value="/calendarSelected", method=RequestMethod.GET)
-	public String calendarSelected( @RequestParam("date") @DateTimeFormat(pattern="yyyy-MM-dd") Date selectedDate, Model model) {
+	public String calendarSelected( @RequestParam("date") @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate selectedDate, Model model) {
 		calendarService.clickDate(selectedDate, model);
 
 		return "addCalendar";
@@ -56,7 +52,7 @@ public class CalendarController {
 	// 일정 수정 페이지 - 선택된 값 가져오기
 	@RequestMapping(value="/calendarUpdate", method=RequestMethod.GET)
 	public String calendarUpdate( @RequestParam("no") int calendarNo, Model model) throws Exception{
-		model.addAttribute("getListByNo",calendarService.getListByCalendarNo(calendarNo));
+		model.addAttribute("getCalendarInfo",calendarService.getCalendarInfoByCalendarNo(calendarNo));
  		return "editCalendar";	
 	}
 	
@@ -66,15 +62,14 @@ public class CalendarController {
 	public Map<String,Object> add(@RequestBody CalendarDTO dto, HttpSession session) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("loginedMember");
-		String loginId = memberDTO.getLoginId();
-		dto.setLoginId(loginId);	
+		dto.setLoginId(memberDTO.getLoginId());	// 아이디 값 저장
 		
 		int result = calendarService.writeCalendar(dto);
-		
+
 		if (result > 0) {
 			map.put("key","success");
 			map.put("msg","일정 추가 성공");
-		}else {
+		} else {
 			map.put("key","failed");
 			map.put("msg","일정 추가 실패");
 		}
@@ -91,7 +86,7 @@ public class CalendarController {
 		if (result > 0) {
 			map.put("key","success");
 			map.put("msg","일정 수정 성공");
-		}else {
+		} else {
 			map.put("key","failed");
 			map.put("msg","일정 수정 실패");
 		}	

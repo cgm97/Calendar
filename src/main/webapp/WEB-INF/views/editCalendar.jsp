@@ -19,24 +19,24 @@
 	 </div>
 	 <div>
 	 	<form id="calendarUpDate">
-	 		<input type="hidden" name="calendarNo" id="calendarNo" value="${getListByNo.calendarNo}">
+	 		<input type="hidden" name="calendarNo" id="calendarNo" value="${getCalendarInfo.calendarNo}">
 	 		<div>
-	 			제목 : <input type="text" name="title" id="title"  value="${getListByNo.title}" />
+	 			제목 : <input type="text" name="title" id="title"  value="${getCalendarInfo.title}" />
 	 		</div>	
 	 		<br>
 	 		<div>
-	 			시작 날짜 : <input type="text" name="startDate" id="startDate" size="12" value="${getListByNo.startDate}" />
+	 			시작 날짜 : <input type="text" name="startDate" id="startDate" size="12" value="${getCalendarInfo.startDate}" />
 					 <input type="button" value="달력" onclick="$('#startDate').datepicker('show');" />
 	 		</div>	
 	 		<br>
 	 		<div>
-	 			종료 날짜 : <input type="text" name="endDate" id="endDate" size="12" value="${getListByNo.endDate}" />
+	 			종료 날짜 : <input type="text" name="endDate" id="endDate" size="12" value="${getCalendarInfo.endDate}" />
 						<input type="button" value="달력" onclick="$('#endDate').datepicker('show');" />
 	 		</div>	
 	 		<br>
 	 			설명 
 	 		<div>
-	 			<textarea name="content" id="content" rows="10" cols="30">${getListByNo.content}</textarea>
+	 			<textarea name="content" id="content" rows="10" cols="30">${getCalendarInfo.content}</textarea>
 	 		</div>
 	 		<br>
 	 	</form>
