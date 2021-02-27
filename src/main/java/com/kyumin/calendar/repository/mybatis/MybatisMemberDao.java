@@ -15,41 +15,41 @@ public class MybatisMemberDao implements MemberRepository {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private static final String namespace = "memberMapper.";
+	private static final String NAMESPACE = "memberMapper.";
 	
 	@Override
 	public int memberInsert(MemberDTO dto) {
-		return sqlSession.insert(namespace+"memberInsert", dto);
+		return sqlSession.insert(NAMESPACE+"memberInsert", dto);
 	}
 
 	@Override
 	public int memberUpdate(MemberDTO dto) {
-		return sqlSession.update(namespace+"memberUpdate", dto);
+		return sqlSession.update(NAMESPACE+"memberUpdate", dto);
 	}
 
 	@Override
 	public int updateLastLogin(String loginId) {
-		return sqlSession.update(namespace+"updateLastLogin", loginId);
+		return sqlSession.update(NAMESPACE+"updateLastLogin", loginId);
 	}
 
 	@Override
 	public int deleteById(String id) {
-		return sqlSession.delete(namespace+"deleteById", id);
+		return sqlSession.delete(NAMESPACE+"deleteById", id);
 	}
 
 	@Override
 	public int duplicateId(String iD) {
-		return sqlSession.selectOne(namespace+"duplicateId", iD);
+		return sqlSession.selectOne(NAMESPACE+"duplicateId", iD);
 	}
 
 	@Override
 	public String memberCheckById(LoginDTO dto) {
-		return sqlSession.selectOne(namespace+"checkLogin", dto);
+		return sqlSession.selectOne(NAMESPACE+"checkLogin", dto);
 	}
 
 	@Override
 	public MemberDTO getMemberById(String id) {		
-		return (MemberDTO) sqlSession.selectOne(namespace+"getMemberById", id);
+		return (MemberDTO) sqlSession.selectOne(NAMESPACE+"getMemberById", id);
 	}
 
 }
